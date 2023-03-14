@@ -19,13 +19,15 @@ const todoList = [
 
 function App() {
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div style={{ display: "flex", flexDirection: "column",  alignItems: "center" }}>
       <h1>ToDo List</h1>
       <ul>
         {todoList.map(function(item){
-          return <li key={item.id}>
-            {item.title}
-          </li>
+          return (
+            <li style={{ lineHeight: "2" }} key={item.id}>
+              {item.title}
+            </li>
+          )
         })}
       </ul>
     </div>

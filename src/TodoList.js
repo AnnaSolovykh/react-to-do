@@ -15,7 +15,7 @@ const todoList = [
         id: 3,
         title: "Cook food",
     },
-    ]
+    ];
 
 const TodoList = () => {
     return (
@@ -27,10 +27,10 @@ const TodoList = () => {
                         {item.title}
                     </li>
                     );
-                    })};
+                })}
             </ul>
         </div>
-    )
+    );
 }
 
 export default TodoList;

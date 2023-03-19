@@ -7,7 +7,7 @@ const AddTodoForm = () => {
             <input id='todoTitle'/>
             <button type='submit'>Add</button>
         </form>
-    )
+    );
 }
 
 export default AddTodoForm;

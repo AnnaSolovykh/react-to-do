@@ -1,4 +1,5 @@
 import React from "react";
+import TodoListItem from "./ToDoListItem";
 
 const todoList = [
     {
@@ -23,9 +24,7 @@ const TodoList = () => {
             <ul>
                 {todoList.map((item) => {
                     return (
-                    <li style={{ lineHeight: "2" }} key={item.id}>
-                        {item.title}
-                    </li>
+                        <TodoListItem key={item.id} todo={item}/>
                     );
                 })}
             </ul>

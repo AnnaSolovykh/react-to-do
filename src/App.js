@@ -14,14 +14,30 @@ const useSemiPersistentState = () => {
   return [todoList, setTodoList]
 }
 
-
 function App() {
-  const [todoList, setTodoList] = useSemiPersistentState();
+const [todoList, setTodoList] = useSemiPersistentState();
+
+const removeTodo = (id) => {
+  console.log(todoList)
+  const newTodoList = todoList.filter(
+    item => item.newTodo.id !== id 
+  );
+  setTodoList(newTodoList)
+};
 
 const addTodo = (newTodo) => {
   setTodoList(
     [...todoList, {newTodo}]
   );
+  //console.log(newTodo.id)
+
+  // const newToDoList = [];
+  // for (let i = 0; i < todoList.length; i++) {
+  //   newToDoList.push(todoList[i])
+  // };
+  // newToDoList.push({newTodo});
+  // setTodoList(newToDoList);
+  
   if (newTodo.title === "") {
     alert("Write something!")
   }
@@ -34,7 +50,7 @@ const addTodo = (newTodo) => {
           alignItems: "center" }}>
         <h1>What are you going to today?</h1>
         <AddTodoForm onAddTodo={addTodo}/>
-        <TodoList todoList={todoList}/>
+        <TodoList todoList={todoList} onRemoveItem={removeTodo}/>
       </div>
     );
 }

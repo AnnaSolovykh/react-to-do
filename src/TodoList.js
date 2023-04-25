@@ -11,8 +11,8 @@ const TodoList = ({ todoList, onRemoveItem}) => {
                     //console.log(item)
                     return (
                         <TodoListItem 
-                            key={item.newTodo.id} 
-                            todo={item.newTodo} 
+                            key={item.id} 
+                            todo={item} 
                             onRemoveItem={onRemoveItem}
                         />
                     );

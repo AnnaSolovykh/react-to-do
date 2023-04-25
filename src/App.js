@@ -20,14 +20,14 @@ const [todoList, setTodoList] = useSemiPersistentState();
 const removeTodo = (id) => {
   console.log(todoList)
   const newTodoList = todoList.filter(
-    item => item.newTodo.id !== id 
+    item => item.id !== id 
   );
   setTodoList(newTodoList)
 };
 
 const addTodo = (newTodo) => {
   setTodoList(
-    [...todoList, {newTodo}]
+    [...todoList, newTodo]
   );
   //console.log(newTodo.id)
 
@@ -35,7 +35,7 @@ const addTodo = (newTodo) => {
   // for (let i = 0; i < todoList.length; i++) {
   //   newToDoList.push(todoList[i])
   // };
-  // newToDoList.push({newTodo});
+  // newToDoList.push(яnewTodo);
   // setTodoList(newToDoList);
   
   if (newTodo.title === "") {

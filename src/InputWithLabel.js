@@ -11,8 +11,7 @@ const InputWithLabel = ({
 
     useEffect(()=> {
         inputRef.current.focus();
-        console.log('Field focused');
-    }, []);
+    });
 
     return (
         <>

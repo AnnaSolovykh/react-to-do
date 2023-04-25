@@ -35,7 +35,7 @@ const addTodo = (newTodo) => {
   // for (let i = 0; i < todoList.length; i++) {
   //   newToDoList.push(todoList[i])
   // };
-  // newToDoList.push(яnewTodo);
+  // newToDoList.push(newTodo);
   // setTodoList(newToDoList);
   
   if (newTodo.title === "") {

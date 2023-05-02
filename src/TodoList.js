@@ -2,13 +2,19 @@ import React from "react";
 import TodoListItem from "./ToDoListItem";
 
 
-const TodoList = ({todoList}) => {
+const TodoList = ({ todoList, onRemoveItem}) => {
+    
     return (
         <div>
             <ul>
-                {todoList.map((item) => {
+                {todoList.map(item => {
+                    //console.log(item)
                     return (
-                        <TodoListItem key={item.newTodo.id} todo={item.newTodo}/>
+                        <TodoListItem 
+                            key={item.id} 
+                            todo={item} 
+                            onRemoveItem={onRemoveItem}
+                        />
                     );
                 })}
             </ul>

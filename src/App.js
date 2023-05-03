@@ -9,15 +9,15 @@ const [todoList, setTodoList] = useState([]);
 const [isLoading, setIsLoading] = useState(true)
 
 useState(() => {
-  new Promise (resolve => {
+  new Promise ((resolve, reject) => {
     setTimeout(
-      () => resolve(
+      () => (resolve)(
         { data: {todoList:
         JSON.parse(localStorage.getItem("savedTodoList"))|| []
       }}
       ),
       2000
-    )
+    );
   })
   .then (result => {
     setTodoList(result.data.todoList);

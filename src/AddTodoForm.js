@@ -11,14 +11,14 @@ const AddTodoForm = ({onAddTodo}) => {
 
     const handleAddTodo = (event) => {
         event.preventDefault();
-        onAddTodo(
-            {
-                title: todoTitle, 
-                id: Date.now(),
-            }
-        );
-        setTodoTitle("")
-    }
+        if (todoTitle=== "" || todoTitle === " ") {
+            alert("Write something!")
+        } else {
+            onAddTodo(todoTitle);
+            setTodoTitle("")
+        }
+    };
+
 
     return (
         <form 

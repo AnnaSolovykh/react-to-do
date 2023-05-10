@@ -8,7 +8,7 @@ function App() {
 const [todoList, setTodoList] = useState([]);
 const [isLoading, setIsLoading] = useState(true)
 
-useState(() => {
+useEffect(() => {
   new Promise ((resolve, reject) => {
     setTimeout(
       () => (resolve)(
@@ -17,7 +17,7 @@ useState(() => {
       }}
       ),
       2000
-    );
+    )
   })
   .then (result => {
     setTodoList(result.data.todoList);
@@ -25,8 +25,8 @@ useState(() => {
   })
 }, []);
 
+
 useEffect(()=> {
-  
   if (isLoading === false) {
     localStorage.setItem("savedTodoList", JSON.stringify(todoList));
   }

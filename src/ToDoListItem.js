@@ -1,7 +1,6 @@
 import React from "react";
 
 const TodoListItem = ({todo, onRemoveItem}) => {
-    //console.log(todo.id)
     return(
         <>
             <li style={{ lineHeight: "2" }}>

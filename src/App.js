@@ -76,7 +76,7 @@ const addTodo = async (title) => {
       throw new Error(message);
     }
     const todo = await response.json();
-    
+
     const newTodo = {
       id: todo.id, 
       title: todo.fields.title
@@ -100,7 +100,6 @@ const removeTodo = async(id) => {
     },
   };
 
-   
   try {
     const response = await fetch(url, options);
     if (!response.ok) {

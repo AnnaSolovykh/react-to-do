@@ -28,7 +28,7 @@ const AddTodoForm = ({onAddTodo}) => {
             flexDirection: "column",  
             alignItems: "center", 
             justifyContent: "space-evenly", 
-            height: "100px" }}>
+            height: 100 }}>
             
             <InputWithLabel 
                 id="todoTitle"

@@ -8,7 +8,6 @@ function App() {
 const [todoList, setTodoList] = useState([]);
 const [isLoading, setIsLoading] = useState(true)
 
-
 const fetchData = async() => {
   const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
   const options = {
@@ -36,8 +35,8 @@ const fetchData = async() => {
       return newTodo
     })
 
-    setTodoList(todos)
-    setIsLoading(false)
+    setTodoList(todos);
+    setIsLoading(false);
 
   } catch (error) {
     console.log(error.message)
@@ -82,7 +81,7 @@ const addTodo = async (title) => {
       title: todo.fields.title
     };
 
-    setTodoList([...todoList, newTodo])
+    setTodoList([...todoList, newTodo]);
 
   } catch (error) {
     console.log(error.message);
@@ -117,9 +116,38 @@ const removeTodo = async(id) => {
     console.log(error.message);
     return null;
   }
-
 }
 
+const updateData = async(newTitle, id) => {
+  const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${id}`;
+  const airtableData = {
+    fields: {
+      title: newTitle,
+    },
+  };
+
+  const options = {
+    method: "PUT",
+    headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+    },
+    body: JSON.stringify(airtableData),
+  };
+
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      const message = `Error has occurred:
+        ${response.status}`;
+      throw new Error(message);
+    }
+
+  } catch (error) {
+    console.log(error.message);
+    return null;
+  }
+}
 
     return (
       <div style={{ 
@@ -131,7 +159,7 @@ const removeTodo = async(id) => {
         {isLoading ? (
           <p>Loading...</p>
         ): (
-            <TodoList todoList={todoList} onRemoveItem={removeTodo}/>
+            <TodoList todoList={todoList} onRemoveItem={removeTodo} updateData={updateData}/>
         )}
       </div>
     );

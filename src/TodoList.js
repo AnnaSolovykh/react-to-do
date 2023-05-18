@@ -2,18 +2,17 @@ import React from "react";
 import TodoListItem from "./ToDoListItem";
 
 
-const TodoList = ({ todoList, onRemoveItem}) => {
-    
+const TodoList = ({ todoList, onRemoveItem, updateData }) => {
     return (
         <div>
             <ul>
                 {todoList.map(item => {
-                    //console.log(item)
                     return (
                         <TodoListItem 
                             key={item.id} 
                             todo={item} 
                             onRemoveItem={onRemoveItem}
+                            updateData={updateData}
                         />
                     );
                 })}

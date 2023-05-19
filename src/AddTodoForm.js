@@ -11,14 +11,14 @@ const AddTodoForm = ({onAddTodo}) => {
 
     const handleAddTodo = (event) => {
         event.preventDefault();
-        onAddTodo(
-            {
-                title: todoTitle, 
-                id: Date.now(),
-            }
-        );
-        setTodoTitle("")
-    }
+        if (todoTitle=== "" || todoTitle === " ") {
+            alert("Write something!")
+        } else {
+            onAddTodo(todoTitle);
+            setTodoTitle("")
+        }
+    };
+
 
     return (
         <form 
@@ -28,7 +28,7 @@ const AddTodoForm = ({onAddTodo}) => {
             flexDirection: "column",  
             alignItems: "center", 
             justifyContent: "space-evenly", 
-            height: "100px" }}>
+            height: 100 }}>
             
             <InputWithLabel 
                 id="todoTitle"

@@ -1,14 +1,47 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from './Home';
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import TodoContainer from "./components/TodoContainer/TodoContainer";
+import style from "./App.module.css"
 
 function App() {
+  const tableName = process.env.REACT_APP_TABLE_NAME;
+  const studiesTableName = process.env.REACT_APP_TABLE_NAME_STUDIES;
+  const tableKey = process.env.REACT_APP_AIRTABLE_API_KEY;
+  const tableBaseId = process.env.REACT_APP_AIRTABLE_BASE_ID;
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route exact path="/" element={<Home/>}/>
-        <Route path='/new' element={<h1>New Todo List</h1>}/>
-      </Routes>
-    </BrowserRouter>     
+    <>
+      <BrowserRouter>
+        <nav className={style.navbarContainer}>
+          <Link className={style.link} to="/" >Studies Tasks Board</Link> 
+          <Link className={style.link} to="/TodoContainer" >Family Tasks Board</Link>
+        </nav>
+        <Routes>
+          <Route 
+            index 
+            element=
+            {<TodoContainer  
+              tableName={studiesTableName}
+              tableKey={tableKey}
+              tableBaseId={tableBaseId}
+            />}
+          />  
+          <Route 
+            path="TodoContainer" 
+            element=
+              {<TodoContainer  
+                tableName={tableName}
+                tableKey={tableKey}
+                tableBaseId={tableBaseId}
+              />}
+          />        
+        </Routes>
+      <footer>
+        <div className={style.phantom}></div>
+        <h3 className={style.signature}>Built by Anna Solovykh for CTD</h3>
+      </footer>
+      </BrowserRouter>  
+    </>
+
   );
 }
 

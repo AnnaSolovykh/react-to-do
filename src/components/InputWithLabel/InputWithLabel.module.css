@@ -1,0 +1,30 @@
+:root {
+    --yellow: #edf1ce;
+    --green: #94b79d95;
+    --turquoise: #19282228;
+    --darkblue: #223e42;
+    --transparent: #f2f3ead7;
+}
+
+.children {
+    font-size: 1.5rem;
+    color: var(--darkblue);
+    letter-spacing: 0.1rem;
+}
+
+.addTodoInput {
+    font-size: 1.1rem;
+    width: 15rem;
+    padding: 0.7rem;
+    border-style: inset;
+    border-radius:  0.5rem;
+    color: var(--darkblue);
+    border-color: var(--darkblue);
+    background-color:  #edf1ceb7;
+    transition: 0.4s ease-in-out;
+}
+
+.addTodoInput:focus {
+    background-color: var(--transparent);
+    padding: 0.8rem 1.5rem;
+}

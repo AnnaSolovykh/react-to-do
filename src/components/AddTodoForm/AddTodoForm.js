@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import InputWithLabel from "./InputWithLabel";
+import PropTypes from  "prop-types";
+import InputWithLabel from "../InputWithLabel/InputWithLabel";
+import style from "./AddTodoForm.module.css"
 
 const AddTodoForm = ({onAddTodo}) => {
     const [todoTitle, setTodoTitle] = useState("");
@@ -15,33 +17,31 @@ const AddTodoForm = ({onAddTodo}) => {
             alert("Write something!")
         } else {
             onAddTodo(todoTitle);
-            setTodoTitle("")
+            setTodoTitle("");
         }
     };
 
-
     return (
         <form 
-        onSubmit={handleAddTodo} 
-        style={{ 
-            display: "flex", 
-            flexDirection: "column",  
-            alignItems: "center", 
-            justifyContent: "space-evenly", 
-            height: 100 }}>
-            
+            onSubmit={handleAddTodo}
+            className={style.addToDoForm}>
+
             <InputWithLabel 
                 id="todoTitle"
                 value={todoTitle} 
                 onInputChange={handleTitleChange}
+                placeholder="Be kind to yourself..."
             >
-                <strong>Title:</strong>
+                <strong>A new task to deal with:</strong>
             </InputWithLabel>   
 
-            <button type="submit">Add</button>
-
+            <button className={style.button} type="submit">Add</button>
         </form>
     );
 }
 
 export default AddTodoForm;
+
+AddTodoForm.propTypes = {
+    onAddTodo: PropTypes.func
+}

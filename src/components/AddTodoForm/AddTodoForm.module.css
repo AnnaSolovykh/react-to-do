@@ -1,0 +1,36 @@
+:root {
+    --yellow: #edf1ce;
+    --green: #94b79d95;
+    --turquoise: #19282228;
+    --darkblue: #2c545a;
+    --transparent: #f2f3ead7;
+}
+
+.addToDoForm {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 12rem;
+}
+
+.button {
+    padding: 0.6rem;
+    width: 15rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    background-color: var(--yellow);
+    color: var(--darkblue);
+    border-style: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+
+}
+
+.button:focus {
+    border: 2px inset var(--darkblue);
+    box-shadow: none;
+    background-color: var(--transparent);
+}

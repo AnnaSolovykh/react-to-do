@@ -1,0 +1,69 @@
+:root {
+    --yellow: #edf1ce;
+    --green: #94b79d95;
+    --turquoise: #19282228;
+    --darkblue: #223e42;
+    --transparent: #f2f3ead7;
+}
+
+.container {
+    display: flex;
+    align-content: center;
+}
+
+.conditionalContainer {
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    padding: 0 3rem;
+}
+
+.label {
+    font-style: italic;
+    font-size: 1.3rem;
+}
+
+.doneBtn {
+    background-image: url(/src/resources/done.png);
+}
+
+.editBtn {
+    background-image: url(/src/resources/edit.png);
+}
+
+.saveBtn {
+    background-image: url(/src/resources/save.png);
+}
+
+.btn {
+    background-size: cover;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    background-color: transparent;
+    margin-left: 0.4rem;
+    cursor: pointer;
+}
+
+.editForm {
+    margin-top: 1.5rem;
+    margin-bottom: 1.05rem;
+}
+
+.formInput {
+    font-size: 1rem;
+    font-style: italic;
+    padding: 0.3rem 0.2rem;
+    border-style: inset;
+    border-radius:  0.5rem;
+    color: var(--darkblue);
+    border-color: var(--darkblue);
+    background-color: var(--transparent);
+    transition: 0.4s ease-in-out;
+}
+
+.formInput:focus {
+    background-color: white;
+    padding: 0.5rem 0.4rem;
+}
+

@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import AddTodoForm from './AddTodoForm';
-import TodoList from './TodoList';
+import React, { useEffect, useState, useCallback } from "react";
+import { RotatingLines } from 'react-loader-spinner'
+import PropTypes from  "prop-types";
+import AddTodoForm from "../AddTodoForm/AddTodoForm";
+import TodoList from "../TodoList/TodoList";
+import style from "./TodoContainer.module.css";
 
-const Home = () => {
+const TodoContainer = ({tableName, tableKey, tableBaseId}) => {
     const [todoList, setTodoList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    
-    const fetchData = async() => {
-        const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
+
+    const fetchData = useCallback(async() => {
+        const url = `https://api.airtable.com/v0/${tableBaseId}/${tableName}`;
         const options = {
             method: "GET",
                 headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+                Authorization: `Bearer ${tableKey}`,
                 },
         };
     
@@ -39,16 +42,15 @@ const Home = () => {
         } catch (error) {
         console.log(error.message)
         }
-    };
-    
+    }, [tableName, tableKey, tableBaseId]);
     
     useEffect(()=> {
+        setIsLoading(true)
         fetchData()
-    }, []);
-    
-    
+    }, [fetchData]);
+
     const addTodo = async (title) => {
-        const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
+        const url = `https://api.airtable.com/v0/${tableBaseId}/${tableName}`;
         const airtableData = {
             fields: {
                 title: title,
@@ -59,7 +61,7 @@ const Home = () => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+                Authorization: `Bearer ${tableKey}`,
             },
             body: JSON.stringify(airtableData),
         };
@@ -87,12 +89,12 @@ const Home = () => {
     };
     
     const removeTodo = async(id) => {
-        const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${id}`;
+        const url = `https://api.airtable.com/v0/${tableBaseId}/${tableName}/${id}`;
         const options = {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+                Authorization: `Bearer ${tableKey}`,
             },
         };
     
@@ -116,7 +118,7 @@ const Home = () => {
     };
     
     const updateData = async(newTitle, id) => {
-        const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${id}`;
+        const url = `https://api.airtable.com/v0/${tableBaseId}/${tableName}/${id}`;
         const airtableData = {
             fields: {
                 title: newTitle,
@@ -127,7 +129,7 @@ const Home = () => {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+                Authorization: `Bearer ${tableKey}`,
             },
             body: JSON.stringify(airtableData),
         };
@@ -145,25 +147,36 @@ const Home = () => {
         }
     };
     
-        return (
-        <div style={{ 
-            display: "flex", 
-            flexDirection: "column",  
-            alignItems: "center" }}>
-                <h1>What are you going to do today?</h1>
-                <AddTodoForm onAddTodo={addTodo}/>
-                {isLoading ? (
-                    <p>Loading...</p>
-                ):(
-                    <TodoList 
-                        todoList={todoList} 
-                        onRemoveItem={removeTodo} 
-                        updateData={updateData}
+    return (
+        <>
+            <h1 className={style.h1}>{tableName}</h1>
+            <AddTodoForm onAddTodo={addTodo}/>
+            {isLoading ? (
+                <div className={style.container}>
+                    <RotatingLines
+                        strokeColor="grey"
+                        strokeWidth="5"
+                        animationDuration="0.75"
+                        width="96"
+                        visible={true}
                     />
-                    )
-                }
-        </div>
-        );
-    }
+                </div>
+            ):(
+                <TodoList 
+                    todoList={todoList} 
+                    onRemoveItem={removeTodo} 
+                    updateData={updateData}
+                />
+            )
+            }
+        </>
+    );
+}
     
-export default Home;
+export default TodoContainer;
+
+TodoContainer.propTypes = {
+    tableName: PropTypes.string,
+    tableKey: PropTypes.string,
+    tableBaseId: PropTypes.string,
+}

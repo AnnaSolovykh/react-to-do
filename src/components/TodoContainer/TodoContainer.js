@@ -1,15 +1,26 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { 
+    useEffect, 
+    useState, 
+    useCallback, 
+} from "react";
 import { RotatingLines } from 'react-loader-spinner'
 import PropTypes from  "prop-types";
 import AddTodoForm from "../AddTodoForm/AddTodoForm";
 import TodoList from "../TodoList/TodoList";
 import style from "./TodoContainer.module.css";
 
-const TodoContainer = ({tableName, tableKey, tableBaseId}) => {
+const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
     const [todoList, setTodoList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     const fetchData = useCallback(async() => {
+
+        //Sort by Airtable view order: the order of list items now matches the order seen in Airtable
+        //const url = `https://api.airtable.com/v0/${tableBaseId}/${tableName}/?view=Grid%20view`;
+
+        //Sort by Airtable field: "asc" is short for ascending which means low-to-high or A-to-Z
+        //const url = `https://api.airtable.com/v0/${tableBaseId}/${tableName}/sort[0][field]=title&sort[0][direction]=asc`;
+
         const url = `https://api.airtable.com/v0/${tableBaseId}/${tableName}`;
         const options = {
             method: "GET",
@@ -27,7 +38,35 @@ const TodoContainer = ({tableName, tableKey, tableBaseId}) => {
             }
     
             const data = await response.json();
-    
+
+            //Sort with JavaScript in ascending alphabetical order
+            const sortingDataInAscendingOrder  = (objectA, objectB) => {
+                let titleA = objectA.title;
+                let titleB = objectB.title;
+
+                if (titleA < titleB) {
+                    return -1;
+                } 
+                if (titleA > titleB) {
+                    return 1;
+                }
+                return 0;
+            }
+            
+            //Sort with JavaScript in descending alphabetical order
+            /* const sortingDataInDescendingOrder  = (objectA, objectB) => {
+                let titleA = objectA.title;
+                let titleB = objectB.title;
+
+                if (titleA > titleB) {
+                    return -1;
+                } 
+                if (titleA < titleB) {
+                    return 1;
+                }
+                return 0;
+            }
+        */
             const todos = data.records.map((todo) => {
                 const newTodo ={
                 id: todo.id,
@@ -35,7 +74,10 @@ const TodoContainer = ({tableName, tableKey, tableBaseId}) => {
                 }
             return newTodo
             })
-    
+
+            
+            todos.sort(sortingDataInAscendingOrder);
+
             setTodoList(todos);
             setIsLoading(false);
     

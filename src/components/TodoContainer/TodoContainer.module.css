@@ -5,6 +5,11 @@
     --darkblue: #2c545a;
 }
 
+.todolistWrapper {
+    display: flex;
+    padding: 1rem;
+}
+
 .h1 {
     text-align: center;
     color: var(--darkblue);
@@ -17,4 +22,10 @@
 .container {
     display: flex;
     justify-content: center;
+}
+
+@media all and (max-width: 850px) {
+    .todolistWrapper {
+        flex-direction: column;
+    }
 }

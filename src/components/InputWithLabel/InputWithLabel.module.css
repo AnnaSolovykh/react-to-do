@@ -14,8 +14,8 @@
 
 .addTodoInput {
     font-size: 1.1rem;
-    width: 15rem;
-    padding: 0.7rem;
+    width: 20rem;
+    padding: 15px 20px;
     border-style: inset;
     border-radius:  0.5rem;
     color: var(--darkblue);

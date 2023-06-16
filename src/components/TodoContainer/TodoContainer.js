@@ -17,13 +17,8 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
 
     const fetchData = useCallback(async() => {
 
-        //Sort by Airtable view order: the order of list items now matches the order seen in Airtable
         const url = `https://api.airtable.com/v0/${tableBaseId}/${tableName}/?view=Grid%20view`;
 
-        //Sort by Airtable field: "asc" is short for ascending which means low-to-high or A-to-Z
-        //const url = `https://api.airtable.com/v0/${tableBaseId}/${tableName}/sort[0][field]=title&sort[0][direction]=asc`;
-
-       // const url = `https://api.airtable.com/v0/${tableBaseId}/${tableName}`;
         const options = {
             method: "GET",
                 headers: {
@@ -63,6 +58,7 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
         fetchData();
     }, [fetchData]);
 
+
     const addTodo = async (title) => {
         const url = `https://api.airtable.com/v0/${tableBaseId}/${tableName}`;
         const airtableData = {
@@ -94,8 +90,8 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
                 title: todo.fields.title,
                 date: todo.createdTime,
             };
-    
-            setTodoList([...todoList], newTodo);
+
+            setTodoList([...todoList, newTodo]);
     
         } catch (error) {
             console.log(error.message);
@@ -179,7 +175,7 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
                 ):(<div className={style.todolistWrapper}> 
                         <div>
                             <SortingByDate setTodoList={setTodoList}/> 
-                            <SortingByAlphabet setTodoList={setTodoList}/>
+                            <SortingByAlphabet setTodoList={setTodoList}/> 
                         </div>
                         <TodoList 
                             todoList={todoList} 

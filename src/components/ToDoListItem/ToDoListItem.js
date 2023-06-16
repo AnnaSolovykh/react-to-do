@@ -23,8 +23,10 @@ const TodoListItem = ({todo, onRemoveItem, updateData}) => {
         }
     };
 
-  //  const dateCreated =  new Date(todo.date);
-   // console.log(dateCreated)
+    const date =  new Date(todo.date).toLocaleDateString('en-us', { month: 'short', day: 'numeric'  });
+    console.log(date)
+
+
 
     return(
         <div className={style.container}>       
@@ -33,9 +35,9 @@ const TodoListItem = ({todo, onRemoveItem, updateData}) => {
                     <p className={style.label}>
                         {newTitle}
                     </p>
-                    {/* <p className={style.label}>
-                        {}
-                    </p> */}
+                    <p className={style.label}>
+                        {date}
+                    </p> 
                     <button 
                         className={`${style.btn} ${style.editBtn}`}
                         onClick={()=> setEditing(false) }>

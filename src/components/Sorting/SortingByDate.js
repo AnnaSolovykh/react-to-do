@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import style from "./Sorting.module.css";
 import PropTypes from  "prop-types";
 
-const SortingByDate = ({ setTodoList }) => {
+const SortingByDate = ({ data, setTodoList }) => {
 
         const [toggle, setToggle] = useState(true);
     
@@ -26,7 +26,7 @@ const SortingByDate = ({ setTodoList }) => {
         const didMount = useRef(false);
         
         useEffect(()=> {
-            didMount.current ? setToggle(toggle) : didMount.current = true;;
+            didMount.current ? setToggle(toggle) : didMount.current = true;
         }, [toggle]);
     
         return (

@@ -11,6 +11,7 @@
     cursor: pointer;
 }
 
-.button:focus {
+.button:hover {
 	background: linear-gradient(rgba(11, 212, 239, 0.386),rgba(41, 238, 159, 0.418));
 }
+

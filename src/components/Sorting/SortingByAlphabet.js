@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import style from "./Sorting.module.css";
 import PropTypes from  "prop-types";
 
-const SortingByAlphabet = ({ setTodoList }) => {
+const SortingByAlphabet = ({ setSortType }) => {
 
         const [toggle, setToggle] = useState(true);
 
@@ -11,15 +11,11 @@ const SortingByAlphabet = ({ setTodoList }) => {
             setToggle(!toggle);
             toggle
             ? ( 
-                setTodoList(todoList => [...todoList].sort((a, b) => { 
-                    return (a.title > b.title ? -1 : b.title < a.title ? 1 : 0) 
-                }))       
+                setSortType("descendingAlphabet") 
             )       
             : 
             ( 
-                setTodoList(todoList => [...todoList].sort((a, b) => { 
-                    return (a.title < b.title ? -1 : b.title > a.title ? 1 : 0) 
-                }))
+                setSortType("ascendingAlphabet")
             )  
         };
 
@@ -27,7 +23,7 @@ const SortingByAlphabet = ({ setTodoList }) => {
         const didMount = useRef(false);
         
         useEffect(()=> {
-            didMount.current ? setToggle(toggle) : didMount.current = true;;
+            didMount.current ? setToggle(toggle) : didMount.current = true;
         }, [toggle]);
     
         return (
@@ -43,5 +39,5 @@ const SortingByAlphabet = ({ setTodoList }) => {
 export default SortingByAlphabet;
 
 SortingByAlphabet.propTypes = {
-    setTodoList: PropTypes.func,
+    setSortType: PropTypes.func,
 }

@@ -24,9 +24,6 @@ const TodoListItem = ({todo, onRemoveItem, updateData}) => {
     };
 
     const date =  new Date(todo.date).toLocaleDateString('en-us', { month: 'short', day: 'numeric'  });
-    console.log(date)
-
-
 
     return(
         <div className={style.container}>       

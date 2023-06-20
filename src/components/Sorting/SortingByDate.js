@@ -3,23 +3,19 @@ import { useState, useEffect, useRef } from "react";
 import style from "./Sorting.module.css";
 import PropTypes from  "prop-types";
 
-const SortingByDate = ({ data, setTodoList }) => {
+const SortingByDate = ({ setSortType }) => {
 
         const [toggle, setToggle] = useState(true);
     
-        const handleToggleByDate = () =>{
+        const handleToggleByDate = () => {
             setToggle(!toggle);
             toggle
-            ? (   
-                setTodoList(todoList => [...todoList].sort((a, b) => { 
-                    return (new Date(a.date) > new Date(b.date) ? -1 : new Date(b.date) < new Date(a.date)? 1 : 0) 
-                }))       
-            )
+            ? ( 
+                setSortType("descendingDate") 
+            )       
             : 
             ( 
-                setTodoList(todoList => [...todoList].sort((a, b) => { 
-                    return (new Date(a.date) < new Date(b.date) ? -1 : new Date(b.date) > new Date(a.date) ? 1 :  0) 
-                }))
+                setSortType("ascendingDate")
             )  
         }
     
@@ -42,5 +38,5 @@ const SortingByDate = ({ data, setTodoList }) => {
 export default SortingByDate;
 
 SortingByDate.propTypes = {
-    setTodoList: PropTypes.func,
+    setSortType: PropTypes.func,
 }

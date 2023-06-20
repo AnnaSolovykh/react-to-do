@@ -1,7 +1,8 @@
 import React, { 
     useEffect, 
     useState, 
-    useCallback
+    useCallback,
+    useMemo
 } from "react";
 import { RotatingLines } from 'react-loader-spinner'
 import PropTypes from  "prop-types";
@@ -14,6 +15,36 @@ import SortingByAlphabet from "../Sorting/SortingByAlphabet";
 const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
     const [todoList, setTodoList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [sortType, setSortType] = useState("default");
+
+const sortedData = useMemo(() => {
+        let sortedList = todoList;
+        switch (sortType) {
+            case "descendingAlphabet":
+                sortedList = [...sortedList].sort((a, b) => { 
+                    return (a.title > b.title ? -1 : b.title < a.title ? 1 : 0); 
+                });
+                break;  
+            case "ascendingAlphabet":
+                sortedList = [...sortedList].sort((a, b) => { 
+                    return (a.title < b.title ? -1 : b.title > a.title ? 1 : 0); 
+                });
+                break;
+            case "descendingDate":
+                sortedList =  [...sortedList].sort((a, b) => { 
+                    return (new Date(a.date) > new Date(b.date) ? -1 : new Date(b.date) < new Date(a.date)? 1 : 0); 
+                });
+                break;
+            case "ascendingDate":
+                sortedList =  [...sortedList].sort((a, b) => { 
+                    return (new Date(a.date) < new Date(b.date) ? -1 : new Date(b.date) > new Date(a.date) ? 1 : 0); 
+                });
+                break;
+            default: 
+                return sortedList;
+        }   
+    return sortedList;
+}, [todoList, sortType]);
 
     const fetchData = useCallback(async() => {
 
@@ -92,7 +123,7 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
             };
 
             setTodoList([...todoList, newTodo]);
-    
+            
         } catch (error) {
             console.log(error.message);
             return null;
@@ -173,12 +204,12 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
                         />
                     </div>
                 ):(<div className={style.todolistWrapper}> 
-                        <div>
-                            <SortingByDate setTodoList={setTodoList}/> 
-                            <SortingByAlphabet setTodoList={setTodoList}/> 
+                        <div> 
+                            <SortingByAlphabet setSortType={setSortType}/> 
+                            <SortingByDate setSortType={setSortType}/> 
                         </div>
                         <TodoList 
-                            todoList={todoList} 
+                            todoList={sortedData} 
                             onRemoveItem={removeTodo} 
                             updateData={updateData}
                         />

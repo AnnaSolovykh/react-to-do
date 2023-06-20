@@ -29,9 +29,8 @@ const SortingByAlphabet = ({ setSortType }) => {
         return (
             <div className={style.container}>
                 <button className={style.button} type="button" onClick={handleToggleByAlphabeticalOrder}> 
-                    {toggle ? "Sort from Z to A" : "Sort from A to Z"} 
+                    {toggle ? "From Z to A" : "From A to Z"} 
                 </button>  
-                <p className={style.text}>{toggle ? "Sorted from A to Z!" : "Sorted from Z to A!"} </p>
             </div>
         );   
 }

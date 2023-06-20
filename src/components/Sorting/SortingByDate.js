@@ -28,9 +28,8 @@ const SortingByDate = ({ setSortType }) => {
         return (
             <div className={style.container}>
                 <button className={style.button}  type="button" onClick={handleToggleByDate}> 
-                    {toggle ? "Sort due to date: from newest" : "Sort due to date: from oldest"} 
+                    {toggle ? "From newest" : "From oldest"} 
                 </button>  
-                <p className={style.text}>{toggle ? "Sorted due to date: from oldest!" : "Sorted due to date: from newest!"} </p>
             </div>
         );   
 }

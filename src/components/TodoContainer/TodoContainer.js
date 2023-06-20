@@ -16,35 +16,35 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
     const [todoList, setTodoList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [sortType, setSortType] = useState("default");
-
-const sortedData = useMemo(() => {
-        let sortedList = todoList;
-        switch (sortType) {
-            case "descendingAlphabet":
-                sortedList = [...sortedList].sort((a, b) => { 
-                    return (a.title > b.title ? -1 : b.title < a.title ? 1 : 0); 
-                });
-                break;  
-            case "ascendingAlphabet":
-                sortedList = [...sortedList].sort((a, b) => { 
-                    return (a.title < b.title ? -1 : b.title > a.title ? 1 : 0); 
-                });
-                break;
-            case "descendingDate":
-                sortedList =  [...sortedList].sort((a, b) => { 
-                    return (new Date(a.date) > new Date(b.date) ? -1 : new Date(b.date) < new Date(a.date)? 1 : 0); 
-                });
-                break;
-            case "ascendingDate":
-                sortedList =  [...sortedList].sort((a, b) => { 
-                    return (new Date(a.date) < new Date(b.date) ? -1 : new Date(b.date) > new Date(a.date) ? 1 : 0); 
-                });
-                break;
-            default: 
-                return sortedList;
-        }   
-    return sortedList;
-}, [todoList, sortType]);
+    
+    const sortedData = useMemo(() => {
+            let sortedList = todoList;
+            switch (sortType) {
+                case "descendingAlphabet":
+                    sortedList = [...sortedList].sort((a, b) => { 
+                        return (a.title > b.title ? -1 : b.title < a.title ? 1 : 0); 
+                    });
+                    break;  
+                case "ascendingAlphabet":
+                    sortedList = [...sortedList].sort((a, b) => { 
+                        return (a.title < b.title ? -1 : b.title > a.title ? 1 : 0); 
+                    });
+                    break;
+                case "descendingDate":
+                    sortedList =  [...sortedList].sort((a, b) => { 
+                        return (new Date(a.date) > new Date(b.date) ? -1 : new Date(b.date) < new Date(a.date)? 1 : 0); 
+                    });
+                    break;
+                case "ascendingDate":
+                    sortedList =  [...sortedList].sort((a, b) => { 
+                        return (new Date(a.date) < new Date(b.date) ? -1 : new Date(b.date) > new Date(a.date) ? 1 : 0); 
+                    });
+                    break;
+                default: 
+                    return sortedList;
+            }   
+        return sortedList;
+    }, [todoList, sortType]);
 
     const fetchData = useCallback(async() => {
 
@@ -204,7 +204,7 @@ const sortedData = useMemo(() => {
                         />
                     </div>
                 ):(<div className={style.todolistWrapper}> 
-                        <div> 
+                        <div className={style.sortingButtons}> 
                             <SortingByAlphabet setSortType={setSortType}/> 
                             <SortingByDate setSortType={setSortType}/> 
                         </div>

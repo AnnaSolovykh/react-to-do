@@ -35,11 +35,11 @@ function App() {
               />}
           />        
         </Routes>
+      </BrowserRouter>  
       <footer>
         <div className={style.phantom}></div>
         <h3 className={style.signature}>Built by Anna Solovykh for CTD</h3>
       </footer>
-      </BrowserRouter>  
     </>
 
   );

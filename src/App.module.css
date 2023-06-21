@@ -24,7 +24,6 @@ body {
   --darkblue: #223e42;
 }
 
-
 body {  
   background:#19282228;
   background-image: linear-gradient(90deg, hsla(67, 100%, 93%, 1) 0%, hsla(100, 73%, 85%, 1) 32%, hsla(156, 72%, 76%, 1) 63%, hsla(187, 77%, 70%, 1) 100%);
@@ -37,14 +36,18 @@ body {
 .navbarContainer {
   display: flex;
   justify-content: flex-end;
-  background-color:var(--turquoise);
+  background-image: linear-gradient(180deg,#1928226a, #19282254, #19282244, #19282229, #19282213, #19282200);
+  position: sticky;
+  left:0;
+  top:0;
+  right:0;
 }
 
 .link {
   padding: 1rem;
   text-decoration: none;
   color: var(--yellow);
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   cursor: pointer;
   font-weight: 700;
   text-align: center;
@@ -69,12 +72,25 @@ footer {
   height:  1rem;
 }
 
-@media all and (max-width: 500px) {
-  footer {
-    background-image: linear-gradient(90deg,#19282200,#19282237);
-    font-size: 0.8rem;
+@media all and (max-width: 900px) {
+  .navbarContainer {
+    justify-content: space-around;
+    background-image: linear-gradient(180deg,#19282290, #1928226d, #19282257, #19282245, #19282224, #19282209, #19282200);
+    height: 10vh;
   }
+  footer {
+    background-image: linear-gradient(90deg,#19282200,#19282222, #19282258);
+    font-size: 0.7rem;
+  }
+}
+
+@media all and (max-width: 500px) {
   .link {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
+    padding: 0.5rem;
+  }
+  footer {
+    background-image: linear-gradient(90deg,#19282200, #19282253);
+    font-size: 0.45rem;
   }
 }

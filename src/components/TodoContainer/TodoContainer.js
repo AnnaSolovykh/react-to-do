@@ -1,16 +1,55 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { 
+    useEffect, 
+    useState, 
+    useCallback,
+    useMemo
+} from "react";
 import { RotatingLines } from 'react-loader-spinner'
 import PropTypes from  "prop-types";
 import AddTodoForm from "../AddTodoForm/AddTodoForm";
-import TodoList from "../TodoList/TodoList";
+import TodoList from "../TodoList/TodoList"
 import style from "./TodoContainer.module.css";
+import SortingByDate from "../Sorting/SortingByDate";
+import SortingByAlphabet from "../Sorting/SortingByAlphabet";
 
-const TodoContainer = ({tableName, tableKey, tableBaseId}) => {
+const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
     const [todoList, setTodoList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [sortType, setSortType] = useState("default");
+    
+    const sortedData = useMemo(() => {
+            let sortedList = todoList;
+            switch (sortType) {
+                case "descendingAlphabet":
+                    sortedList = [...sortedList].sort((a, b) => { 
+                        return (a.title > b.title ? -1 : b.title < a.title ? 1 : 0); 
+                    });
+                    break;  
+                case "ascendingAlphabet":
+                    sortedList = [...sortedList].sort((a, b) => { 
+                        return (a.title < b.title ? -1 : b.title > a.title ? 1 : 0); 
+                    });
+                    break;
+                case "descendingDate":
+                    sortedList =  [...sortedList].sort((a, b) => { 
+                        return (new Date(a.date) > new Date(b.date) ? -1 : new Date(b.date) < new Date(a.date)? 1 : 0); 
+                    });
+                    break;
+                case "ascendingDate":
+                    sortedList =  [...sortedList].sort((a, b) => { 
+                        return (new Date(a.date) < new Date(b.date) ? -1 : new Date(b.date) > new Date(a.date) ? 1 : 0); 
+                    });
+                    break;
+                default: 
+                    return sortedList;
+            }   
+        return sortedList;
+    }, [todoList, sortType]);
 
     const fetchData = useCallback(async() => {
-        const url = `https://api.airtable.com/v0/${tableBaseId}/${tableName}`;
+
+        const url = `https://api.airtable.com/v0/${tableBaseId}/${tableName}/?view=Grid%20view`;
+
         const options = {
             method: "GET",
                 headers: {
@@ -27,15 +66,16 @@ const TodoContainer = ({tableName, tableKey, tableBaseId}) => {
             }
     
             const data = await response.json();
-    
+
             const todos = data.records.map((todo) => {
                 const newTodo ={
                 id: todo.id,
-                title: todo.fields.title
+                title: todo.fields.title,
+                date: todo.createdTime,
                 }
             return newTodo
             })
-    
+
             setTodoList(todos);
             setIsLoading(false);
     
@@ -43,11 +83,12 @@ const TodoContainer = ({tableName, tableKey, tableBaseId}) => {
         console.log(error.message)
         }
     }, [tableName, tableKey, tableBaseId]);
-    
+
     useEffect(()=> {
-        setIsLoading(true)
-        fetchData()
+        setIsLoading(true);
+        fetchData();
     }, [fetchData]);
+
 
     const addTodo = async (title) => {
         const url = `https://api.airtable.com/v0/${tableBaseId}/${tableName}`;
@@ -77,11 +118,12 @@ const TodoContainer = ({tableName, tableKey, tableBaseId}) => {
         
             const newTodo = {
                 id: todo.id, 
-                title: todo.fields.title
+                title: todo.fields.title,
+                date: todo.createdTime,
             };
-    
+
             setTodoList([...todoList, newTodo]);
-    
+            
         } catch (error) {
             console.log(error.message);
             return null;
@@ -151,24 +193,30 @@ const TodoContainer = ({tableName, tableKey, tableBaseId}) => {
         <>
             <h1 className={style.h1}>{tableName}</h1>
             <AddTodoForm onAddTodo={addTodo}/>
-            {isLoading ? (
-                <div className={style.container}>
-                    <RotatingLines
-                        strokeColor="grey"
-                        strokeWidth="5"
-                        animationDuration="0.75"
-                        width="96"
-                        visible={true}
-                    />
-                </div>
-            ):(
-                <TodoList 
-                    todoList={todoList} 
-                    onRemoveItem={removeTodo} 
-                    updateData={updateData}
-                />
-            )
-            }
+                {isLoading ? (
+                    <div className={style.container}>
+                        <RotatingLines
+                            strokeColor="grey"
+                            strokeWidth="5"
+                            animationDuration="0.75"
+                            width="96"
+                            visible={true}
+                        />
+                    </div>
+                ):(<div className={style.todolistWrapper}> 
+                        <div className={style.sortingButtons}> 
+                            <SortingByAlphabet setSortType={setSortType}/> 
+                            <SortingByDate setSortType={setSortType}/> 
+                        </div>
+                        <TodoList 
+                            todoList={sortedData} 
+                            onRemoveItem={removeTodo} 
+                            updateData={updateData}
+                        />
+                    </div>
+                )
+                }
+            
         </>
     );
 }

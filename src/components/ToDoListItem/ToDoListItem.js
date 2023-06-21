@@ -23,6 +23,8 @@ const TodoListItem = ({todo, onRemoveItem, updateData}) => {
         }
     };
 
+    const date =  new Date(todo.date).toLocaleDateString('en-us', { month: 'short', day: 'numeric'  });
+
     return(
         <div className={style.container}>       
             {editing ? (
@@ -30,6 +32,9 @@ const TodoListItem = ({todo, onRemoveItem, updateData}) => {
                     <p className={style.label}>
                         {newTitle}
                     </p>
+                    <p className={style.label}>
+                        {date}
+                    </p> 
                     <button 
                         className={`${style.btn} ${style.editBtn}`}
                         onClick={()=> setEditing(false) }>

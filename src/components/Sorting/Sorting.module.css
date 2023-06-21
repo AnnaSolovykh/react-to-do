@@ -1,0 +1,17 @@
+.button {
+    width: 8rem;
+    border-style: outset;
+    border-radius: 0.5rem;
+	padding: 5px 10px;
+	background-image: linear-gradient(rgba(11, 212, 239, 0.772), rgba(41, 238, 159, 0.818));
+	text-decoration: none;
+	color: #192822;
+	font-size: 1rem;
+	font-weight: 400;
+    cursor: pointer;
+}
+
+.button:hover {
+	background: linear-gradient(rgba(11, 212, 239, 0.386),rgba(41, 238, 159, 0.418));
+}
+

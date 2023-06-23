@@ -1,6 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import PropTypes from  "prop-types";
+import {ReactComponent as Edit} from "./edit.svg"
+import {ReactComponent as Save} from "./save.svg"
+import {ReactComponent as Delete} from "./delete.svg"
 import style from "./TodoListItem.module.css";
 
 
@@ -23,12 +26,23 @@ const TodoListItem = ({todo, onRemoveItem, updateData}) => {
         }
     };
 
+    // const handleCheck = () => {
+    //     if (todo.id === id) {
+    //         {todo, isChecked: !todo.isChecked}
+    //     } else {
+    //         return todo;
+    //     }
+    // }
+
     const date =  new Date(todo.date).toLocaleDateString('en-us', { month: 'short', day: 'numeric'  });
 
     return(
         <div className={style.container}>       
             {editing ? (
                 <div className={style.conditionalContainer}>
+                    {/* <input 
+                        type="checkbox"
+                        checked={handleCheck}/> */}
                     <p className={style.label}>
                         {newTitle}
                     </p>
@@ -38,10 +52,12 @@ const TodoListItem = ({todo, onRemoveItem, updateData}) => {
                     <button 
                         className={`${style.btn} ${style.editBtn}`}
                         onClick={()=> setEditing(false) }>
+                            <Edit height="25px" width="25px" />
                     </button>
                     <button 
                         className={`${style.btn} ${style.doneBtn}`}
                         onClick={()=> onRemoveItem(todo.id) }>
+                            <Delete height="25px" width="25px" />
                     </button>
                 </div>
             ):(
@@ -54,10 +70,11 @@ const TodoListItem = ({todo, onRemoveItem, updateData}) => {
                         value={newTitle} 
                         onChange={editItem}>
 
-                    </input>
+                    </input> 
                     <button 
                         className={`${style.btn} ${style.saveBtn}`}
                         type="submit">
+                            <Save height="30px" width="30px" />
                     </button>
                 </form>
 

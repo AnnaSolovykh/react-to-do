@@ -1,11 +1,3 @@
-:root {
-    --yellow: #edf1ce;
-    --green: #94b79d95;
-    --turquoise: #19282228;
-    --darkblue: #223e42;
-    --transparent: #f2f3ead7;
-}
-
 .container {
     display: flex;
     align-content: center;
@@ -14,46 +6,34 @@
 .conditionalContainer {
     display: grid;
     gap: 10px 15px;
-    grid-template-columns: 100px 70px 40px 30px; 
-    padding: 0 3rem;
+    grid-template-columns: 150px 70px 20px 20px 40px; 
+    margin-left: 10px;
 }
 
 .label {
     font-style: italic;
     font-size: 1.3rem;
-    line-height: 1;
+    line-height: 0.8;
     word-wrap: break-word;
+    font-family: 'Architects Daughter', cursive;
+    color: var(--turquoise);
 }
 
-.doneBtn {
-    background-image: url(/src/resources/done.png);
-}
-
-.editBtn {
-    background-image: url(/src/resources/edit.png);
-}
-
-.saveBtn {
-    background-image: url(/src/resources/save.png);
-}
 
 .btn {
     background-size: cover;
-    width: 1rem;
-    height: 1rem;
     border: none;
     background-color: transparent;
     cursor: pointer;
-    padding: 1.4rem;
 }
 
 .editForm {
-    margin-bottom: 1rem;
-}
+    margin-top: 0.9rem;
+    margin-bottom: 0.4em;
+} 
 
 .formInput {
-    font-size: 1rem;
-    font-style: italic;
+    font-size: 1.1rem;
     padding: 0.3rem 0.2rem;
     border-style: inset;
     border-radius:  0.5rem;
@@ -61,11 +41,11 @@
     border-color: var(--darkblue);
     background-color: var(--transparent);
     transition: 0.4s ease-in-out;
+    font-family: 'Architects Daughter', cursive;
 }
 
 .formInput:focus {
     background-color: white;
-    padding: 0.5rem 0.4rem;
 }
 
 @media all and (max-width: 500px) {

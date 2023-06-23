@@ -1,0 +1,31 @@
+html {
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  line-height: 1.5;
+  font-family: 'Montserrat', sans-serif;
+}
+
+:root {
+  --yellow: #edf1ce;
+  --green: #94b79d95;
+  --turquoise: #16241f;
+  --darkblue: #223e42;
+  --transparent: #f2f3ead7;
+}
+
+body {  
+  background:#19282228;
+  background-image: linear-gradient(90deg, hsla(67, 100%, 93%, 1) 0%, hsla(100, 73%, 85%, 1) 32%, hsla(156, 72%, 76%, 1) 63%, hsla(187, 77%, 70%, 1) 100%);
+}

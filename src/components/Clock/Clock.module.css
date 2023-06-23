@@ -1,0 +1,24 @@
+.container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.clock {
+    background-color: rgba(245, 245, 245, 0.463); 
+    box-shadow: 0px 0px 20px var(--yellow) inset;
+    width: 9rem;
+    height: 7rem;
+    color: var(--turquoise);
+    padding: 2rem 3rem;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 1rem;
+}
+
+.span {
+    color: var(--turquoise);;
+    font-size: 2rem;
+    font-weight: 700;
+}

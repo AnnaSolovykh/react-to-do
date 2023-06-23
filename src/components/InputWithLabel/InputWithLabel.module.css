@@ -1,11 +1,3 @@
-:root {
-    --yellow: #edf1ce;
-    --green: #94b79d95;
-    --turquoise: #19282228;
-    --darkblue: #223e42;
-    --transparent: #f2f3ead7;
-}
-
 .children {
     font-size: 1.5rem;
     color: var(--darkblue);

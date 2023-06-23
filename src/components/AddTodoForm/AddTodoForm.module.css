@@ -26,11 +26,10 @@
     border-style: none;
     border-radius: 0.5rem;
     box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
-
 }
 
 .button:focus {
     border: 2px inset var(--darkblue);
     box-shadow: none;
-    background-color: var(--transparent);
+    transition: all 0.1s ease-in;
 }

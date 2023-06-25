@@ -6,8 +6,15 @@
 .conditionalContainer {
     display: grid;
     gap: 10px 15px;
-    grid-template-columns: 150px 70px 20px 20px 40px; 
-    margin-left: 10px;
+    grid-template-columns: 20px 140px 70px 20px 20px 40px; 
+    margin-left: 30px;
+}
+
+.conditionalContainerForm{
+    display: grid;
+    gap: 10px 15px;
+    grid-template-columns: 260px 20px 60px; 
+    margin-left: 30px;
 }
 
 .label {
@@ -16,9 +23,28 @@
     line-height: 0.8;
     word-wrap: break-word;
     font-family: 'Architects Daughter', cursive;
-    color: var(--turquoise);
+    color: var(--darkblue);
 }
 
+.icon {
+    height: 25px;
+    width: 25px;
+}
+
+.formIcon {
+    height: 30px;
+    width: 30px;
+}
+
+.lineThrough {
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 0.8;
+    word-wrap: break-word;
+    font-family: 'Architects Daughter', cursive;
+    text-decoration: line-through;
+    opacity: 50%;
+}
 
 .btn {
     background-size: cover;
@@ -40,12 +66,49 @@
     color: var(--darkblue);
     border-color: var(--darkblue);
     background-color: var(--transparent);
-    transition: 0.4s ease-in-out;
     font-family: 'Architects Daughter', cursive;
 }
 
 .formInput:focus {
-    background-color: white;
+    transition: 0.4s ease-in-out;
+    padding: 0.3rem 1rem;
+    border-color: var(--green);
+    background-color: var(--yellow);
+    outline: none;
+
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    background-color: var(--yellow);
+    font: inherit;
+    color: var(--yellow);
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid var(--green);
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center; 
+    margin-top: 20px;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--green);
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+input[type="checkbox"]:focus {
+    outline: max(2px, 0.15em) solid var(--green);
+    outline-offset: max(2px, 0.15em);
 }
 
 @media all and (max-width: 500px) {

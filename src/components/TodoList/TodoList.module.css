@@ -8,6 +8,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+} 
+
+.motivationText {
+  color: var(--darkblue);
 }
 
 .list {

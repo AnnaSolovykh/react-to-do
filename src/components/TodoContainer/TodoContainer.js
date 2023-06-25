@@ -16,7 +16,7 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
     const [todoList, setTodoList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [sortType, setSortType] = useState("default");
-    
+
     const sortedData = useMemo(() => {
             let sortedList = todoList;
             switch (sortType) {
@@ -209,11 +209,11 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
                             <SortingByDate setSortType={setSortType}/> 
                         </div>
                         <TodoList 
+                            setTodoList={setTodoList}
                             todoList={sortedData} 
                             onRemoveItem={removeTodo} 
                             updateData={updateData}
                         />
-
                     </div>
                 )
                 }

@@ -8,11 +8,8 @@
 
 .container {
     display: flex; 
-    justify-content: center;
     flex-direction: column;
-    align-items: center;
     width: 600px;
-
 } 
 
 .heading {
@@ -24,16 +21,16 @@
 
 .subheading {
     color: var(--darkblue);
-    font-size: 2rem;
+    font-size: 1.7rem;
     font-weight: 700;
-    align-self: flex-end;
-    font-style: italic;
+    text-align: left;
+    align-self: flex-end; 
 }
 
 .paraOne {
     align-self: flex-start;
     color: var(--darkblue);
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     font-weight: 600;
 }
 

@@ -1,5 +1,5 @@
 .children {
-    font-size: 1.5rem;
+    font-size: 0.7rem;
     color: var(--darkblue);
     letter-spacing: 0.1rem;
 }
@@ -7,16 +7,19 @@
 .addTodoInput {
     font-size: 1.1rem;
     width: 20rem;
-    padding: 15px 20px;
+    padding: 12px 17px;
     border-style: inset;
     border-radius:  0.5rem;
     color: var(--darkblue);
     border-color: var(--darkblue);
     background-color:  #edf1ceb7;
     transition: 0.4s ease-in-out;
+    font-family: 'Architects Daughter', cursive;
 }
 
 .addTodoInput:focus {
-    background-color: var(--transparent);
-    padding: 0.8rem 1.5rem;
+    border-color: var(--green);
+    background-color: var(--yellow);
+    padding: 12px 22px;
+    outline: none;
 }

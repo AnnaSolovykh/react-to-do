@@ -21,7 +21,7 @@ const Home = () => {
         } catch (error) {
             console.log(error.message)
             }
-    }, [])
+    }, []);
 
     const isFirstRender = useRef(true);
 
@@ -33,7 +33,7 @@ const Home = () => {
             const interval = setInterval(getQuotes, 7000);
             return () => clearInterval(interval);
         }
-        }, [getQuotes])
+        }, [getQuotes]);
 
     return (
     <div className={style.wrapper}>       

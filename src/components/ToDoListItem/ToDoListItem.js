@@ -1,15 +1,18 @@
 import React from "react";
 import { useState } from "react";
 import PropTypes from  "prop-types";
-import {ReactComponent as Edit} from "./edit.svg"
+import {ReactComponent as Edit} from "./edit.svg";
 import {ReactComponent as Save} from "./save.svg"
-import {ReactComponent as Delete} from "./delete.svg"
+import {ReactComponent as Delete} from "./delete.svg";
 import style from "./TodoListItem.module.css";
 
 
-const TodoListItem = ({todo, onRemoveItem, updateData}) => {
-    const [editing, setEditing] = useState(true)
-    const [newTitle, setNewTitle] = useState(todo.title)
+const TodoListItem = ({todo, onRemoveItem, updateData, handleCheck}) => {
+    const [editing, setEditing] = useState(true);
+    const [newTitle, setNewTitle] = useState(todo.title);
+    const [checked, setChecked] = useState(false);
+
+    const date =  new Date(todo.date).toLocaleDateString('en-us', { month: 'short', day: 'numeric'  });
 
     const editItem = (event) => {
         const editedTitle = event.target.value;
@@ -26,24 +29,18 @@ const TodoListItem = ({todo, onRemoveItem, updateData}) => {
         }
     };
 
-    // const handleCheck = () => {
-    //     if (todo.id === id) {
-    //         {todo, isChecked: !todo.isChecked}
-    //     } else {
-    //         return todo;
-    //     }
-    // }
-
-    const date =  new Date(todo.date).toLocaleDateString('en-us', { month: 'short', day: 'numeric'  });
-
     return(
-        <div className={style.container}>       
+        <div className={style.container}>     
             {editing ? (
                 <div className={style.conditionalContainer}>
-                    {/* <input 
+                    <input 
                         type="checkbox"
-                        checked={handleCheck}/> */}
-                    <p className={style.label}>
+                        onClick={()=> handleCheck(todo.id)}
+                        className={style.checkbox}
+                        checked={checked}
+                        onChange={e => setChecked(e.target.checked)}
+                    /> 
+                    <p className={todo.isChecked ? style.lineThrough : style.label}>
                         {newTitle}
                     </p>
                     <p className={style.label}>
@@ -52,18 +49,18 @@ const TodoListItem = ({todo, onRemoveItem, updateData}) => {
                     <button 
                         className={`${style.btn} ${style.editBtn}`}
                         onClick={()=> setEditing(false) }>
-                            <Edit height="25px" width="25px" />
+                            <Edit className={style.icon}/>
                     </button>
                     <button 
                         className={`${style.btn} ${style.doneBtn}`}
                         onClick={()=> onRemoveItem(todo.id) }>
-                            <Delete height="25px" width="25px" />
+                            <Delete className={style.icon}/>
                     </button>
                 </div>
             ):(
                 <form 
                     onSubmit={handleEditItem}
-                    className={`${style.conditionalContainer} ${style.editForm}`}
+                    className={`${style.conditionalContainerForm} ${style.editForm}`}
                 >
                     <input 
                         className={style.formInput} 
@@ -74,10 +71,9 @@ const TodoListItem = ({todo, onRemoveItem, updateData}) => {
                     <button 
                         className={`${style.btn} ${style.saveBtn}`}
                         type="submit">
-                            <Save height="30px" width="30px" />
+                            <Save className={style.formIcon}/> 
                     </button>
                 </form>
-
             )}
             
         </div>

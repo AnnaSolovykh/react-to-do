@@ -1,17 +1,9 @@
-:root {
-    --yellow: #edf1ce;
-    --green: #94b79d95;
-    --turquoise: #19282228;
-    --darkblue: #2c545a;
-    --transparent: #f2f3ead7;
-}
-
 .addToDoForm {
     display: flex;
     flex-direction:column;
     align-items: center;
     justify-content: space-evenly;
-    height: 12rem;
+    height: 11rem;
 }
 
 .button {

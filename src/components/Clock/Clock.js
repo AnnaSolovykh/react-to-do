@@ -14,7 +14,7 @@ const Clock = () => {
       minutes: date.getMinutes(),
       hours: date.getHours(),
       seconds: date.getSeconds()
-    })
+    });
   };
 
   useEffect(()=> {

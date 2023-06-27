@@ -36,7 +36,7 @@ const AddTodoForm = ({onAddTodo}) => {
                 onInputChange={handleTitleChange}
                 placeholder="A new goal to achieve..."
             >
-                <p>Don't forget that sky is the limit!</p>
+                <p>Meet your goals to fulfill your dreams!</p>
             </InputWithLabel>   
             <button className={style.button} type="submit">Add</button>
         </form>

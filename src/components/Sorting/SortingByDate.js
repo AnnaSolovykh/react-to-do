@@ -8,7 +8,7 @@ const SortingByDate = ({ setSortType }) => {
 
     const handleToggleByDate = () => {
         setToggle(!toggle);
-        toggle ? setSortType("descendingDate") : setSortType("ascendingDate")  
+        toggle ? setSortType("descendingDate") : setSortType("ascendingDate");
     }
     
     const didMount = useRef(false);

@@ -8,7 +8,7 @@ const SortingByAlphabet = ({ setSortType }) => {
 
     const handleToggleByAlphabeticalOrder = () => {
         setToggle(!toggle);
-        toggle ? setSortType("descendingAlphabet") : setSortType("ascendingAlphabet")
+        toggle ? setSortType("descendingAlphabet") : setSortType("ascendingAlphabet");
     };
 
     const didMount = useRef(false);

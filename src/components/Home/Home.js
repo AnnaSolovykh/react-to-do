@@ -27,7 +27,7 @@ const Home = () => {
 
     useEffect(()=> {
         if (isFirstRender.current) {
-            getQuotes()
+            getQuotes();
             isFirstRender.current = false;
         } else if (!isFirstRender.current) {
             const interval = setInterval(getQuotes, 7000);
@@ -36,24 +36,20 @@ const Home = () => {
         }, [getQuotes]);
 
     return (
-    <div className={style.wrapper}>       
-        <div className={style.container}>
-            <h1 className={style.heading}>Life is happening to you right now… </h1>
+        <div className={style.wrapper}>       
+            <div className={style.container}>
+                <h1 className={style.heading}>Life is happening to you right now… </h1>
+            </div>
+            <div className={style.container}>
+                <h2 className={style.subheading}>Don’t waste a second!</h2>
+            </div>
+            <Clock/>
+            <div className={style.quoteWrapper}>
+                <p className={style.text}>{quote.text}</p>
+                <p className={style.author}>{quote.author}</p>     
+            </div>
         </div>
-        <div className={style.container}>
-            <h2 className={style.subheading}>Don’t waste a second!</h2>
-        </div>
-        <Clock/>
-        <div className={style.container}>
-            <h2 className={style.paraOne}>Live now! Meet your goals</h2>
-            <h2 className={style.paraTwo}> to fulfill your dreams!</h2>  
-        </div>
-        <div className={style.quoteWrapper}>
-            <p className={style.text}>{quote.text}</p>
-            <p className={style.author}>{quote.author}</p>     
-        </div>
-    </div>
     )
-}
+};
 
 export default Home;

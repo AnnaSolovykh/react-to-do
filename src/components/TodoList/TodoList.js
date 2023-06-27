@@ -11,7 +11,7 @@ const TodoList = ({ setTodoList, todoList, onRemoveItem, updateData }) => {
     const handleCheck = (id) => {
         const checkedGoals = todoList.map(todo => {
             if (todo.id === id) {
-                let checkedItem = {...todo, isChecked: !todo.isChecked}
+                let checkedItem = {...todo, isChecked: !todo.isChecked};
                 return checkedItem;
             } else {
                 return todo;
@@ -51,7 +51,7 @@ const TodoList = ({ setTodoList, todoList, onRemoveItem, updateData }) => {
                 className={style.wrapper}
                 bgColor="#f2f3ead7"
                 height="20px"
-                width="25rem"
+                width="22rem"
                 borderRadius="0.5rem"
                 labelAlignment="center"
                 baseBgColor="transparent"

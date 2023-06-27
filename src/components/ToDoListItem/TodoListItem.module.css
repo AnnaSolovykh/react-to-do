@@ -1,29 +1,40 @@
 .container {
-    display: flex;
-    align-content: center;
+    margin-top: 2.2rem;
 }
 
 .conditionalContainer {
     display: grid;
-    gap: 10px 15px;
-    grid-template-columns: 20px 140px 70px 20px 20px 40px; 
-    margin-left: 30px;
+    gap: 0.9rem;    
+    grid-template-columns: 1fr 3fr 2fr 1fr 1fr;   
+    grid-template-rows: 1.5rem;  
+    margin-left: 5.5rem; 
+    margin-right: 5rem;
+    align-items: center;
 }
 
 .conditionalContainerForm{
     display: grid;
-    gap: 10px 15px;
-    grid-template-columns: 260px 20px 60px; 
-    margin-left: 30px;
+    gap: 1.3rem;  
+    grid-template-columns: 8.7fr 1fr;  
+    margin-left: 5.5rem;
+    margin-right: 5rem;
+    grid-template-rows: 1.5rem; 
+    align-items: center; 
 }
 
 .label {
     font-style: italic;
+    max-height: 3rem;
     font-size: 1.3rem;
-    line-height: 0.8;
+    line-height: 1;
     word-wrap: break-word;
     font-family: 'Architects Daughter', cursive;
     color: var(--darkblue);
+    overflow: auto;
+}
+
+.label::-webkit-scrollbar {
+    display: none;
 }
 
 .icon {
@@ -31,7 +42,13 @@
     width: 25px;
 }
 
+.icon:hover, .formIcon:hover {
+    transition: all 0.1s ease-out;
+    transform: scale(1.1);
+} 
+
 .formIcon {
+    margin-top: 0.3rem;
     height: 30px;
     width: 30px;
 }
@@ -53,11 +70,6 @@
     cursor: pointer;
 }
 
-.editForm {
-    margin-top: 0.9rem;
-    margin-bottom: 0.4em;
-} 
-
 .formInput {
     font-size: 1.1rem;
     padding: 0.3rem 0.2rem;
@@ -75,7 +87,6 @@
     border-color: var(--green);
     background-color: var(--yellow);
     outline: none;
-
 }
 
 input[type="checkbox"] {
@@ -90,7 +101,6 @@ input[type="checkbox"] {
     transform: translateY(-0.075em);
     display: grid;
     place-content: center; 
-    margin-top: 20px;
 }
 
 input[type="checkbox"]::before {
@@ -113,8 +123,14 @@ input[type="checkbox"]:focus {
 
 @media all and (max-width: 500px) {
     .conditionalContainer {
-        gap: 5px 10px;
-        grid-template-columns: 50px 50px 30px 30px; 
+        margin-left: 4.2rem;
+        grid-template-rows: 1rem;  
+        grid-template-columns: 20px 90px 50px 20px 20px; 
+    }
+    .conditionalContainerForm {
+        margin-left: 4.2rem;
+        grid-template-rows: 1rem;  
+        grid-template-columns: 180px 20px; 
     }
     .label {
         font-size: 1rem;

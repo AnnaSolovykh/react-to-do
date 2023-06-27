@@ -1,5 +1,4 @@
 .container {
-    margin-top: 50px;
     display: flex;
     justify-content: center;
     align-items: baseline;
@@ -22,3 +21,13 @@
     font-size: 2rem;
     font-weight: 700;
 }
+
+@media all and (max-width: 500px) {
+    .clock {
+        width: 6rem;
+        height: 4rem;
+        padding: 1rem 2rem;
+        font-size: 1.4rem;
+        margin: 0.5rem;
+    }
+} 

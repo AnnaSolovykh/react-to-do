@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import PropTypes from  "prop-types";
-import {ReactComponent as Edit} from "./edit.svg";
-import {ReactComponent as Save} from "./save.svg"
-import {ReactComponent as Delete} from "./delete.svg";
+import Swal from "sweetalert2";
+import {ReactComponent as Edit} from "../../resources/edit.svg";
+import {ReactComponent as Save} from "../../resources/save.svg";
+import {ReactComponent as Delete} from "../../resources/delete.svg";
 import style from "./TodoListItem.module.css";
 
 
@@ -16,13 +17,17 @@ const TodoListItem = ({todo, onRemoveItem, updateData, handleCheck}) => {
 
     const editItem = (event) => {
         const editedTitle = event.target.value;
-        setNewTitle(editedTitle)
+        setNewTitle(editedTitle);
     }
 
     const handleEditItem = (event) => {
         event.preventDefault();
         if (newTitle=== "" || newTitle === " ") {
-            alert("Write something!")
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: "Type your goal please!",
+            })
         } else {
             setEditing(true);
             updateData(newTitle, todo.id);
@@ -60,7 +65,7 @@ const TodoListItem = ({todo, onRemoveItem, updateData, handleCheck}) => {
             ):(
                 <form 
                     onSubmit={handleEditItem}
-                    className={`${style.conditionalContainerForm} ${style.editForm}`}
+                    className={style.conditionalContainerForm}
                 >
                     <input 
                         className={style.formInput} 

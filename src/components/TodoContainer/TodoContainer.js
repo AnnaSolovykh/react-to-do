@@ -216,8 +216,7 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
                         />
                     </div>
                 )
-                }
-            
+            }
         </>
     );
 }

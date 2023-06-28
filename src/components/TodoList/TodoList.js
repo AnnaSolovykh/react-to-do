@@ -22,6 +22,7 @@ const TodoList = ({ setTodoList, todoList, onRemoveItem, updateData }) => {
 
     const completedTasks = todoList.filter(task => task.isChecked);
     let percentageComplete = Math.round((completedTasks.length / todoList.length) * 100);
+    if (!percentageComplete) percentageComplete = 0;
 
     useEffect(()=> {
         if (percentageComplete === 0) {

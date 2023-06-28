@@ -90,7 +90,7 @@
 .formInput:focus {
     transition: 0.4s ease-in-out;
     padding: 0.3rem 1rem;
-    border-color: var(--green);
+    border-color: var(--turquoise);
     background-color: var(--yellow);
     outline: none;
 }
@@ -102,7 +102,7 @@ input[type="checkbox"] {
     color: var(--yellow);
     width: 1.15em;
     height: 1.15em;
-    border: 0.15em solid var(--green);
+    border: 0.15em solid var(--turquoise);
     border-radius: 0.15em;
     transform: translateY(-0.075em);
     display: grid;
@@ -115,7 +115,7 @@ input[type="checkbox"]::before {
     height: 0.65em;
     transform: scale(0);
     transition: 120ms transform ease-in-out;
-    box-shadow: inset 1em 1em var(--green);
+    box-shadow: inset 1em 1em var(--turquoise);
 }
 
 input[type="checkbox"]:checked::before {
@@ -123,7 +123,7 @@ input[type="checkbox"]:checked::before {
 }
 
 input[type="checkbox"]:focus {
-    outline: max(2px, 0.15em) solid var(--green);
+    outline: max(2px, 0.15em) solid var(--turquoise);
     outline-offset: max(2px, 0.15em);
 }
 
@@ -131,7 +131,7 @@ input[type="checkbox"]:focus {
     .conditionalContainer {
         margin-left: 4.2rem;
         grid-template-rows: 1rem;  
-        grid-template-columns: 20px 90px 50px 20px 20px; 
+        grid-template-columns: 20px 90px 55px 20px 20px; 
     }
     .conditionalContainerForm {
         margin-left: 4.2rem;

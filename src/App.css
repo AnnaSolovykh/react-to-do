@@ -22,7 +22,7 @@ body {
 :root {
   --yellow: #edf1ce;
   --green:rgb(47, 157, 124);
-  --turquoise: #16241f;
+  --turquoise: rgb(47, 157, 124);
   --darkblue: #223e42;
   --transparent: #f2f3ead7;  
   --light-bg: linear-gradient(90deg, hsla(67, 100%, 93%, 1) 0%, hsla(100, 73%, 85%, 1) 32%, hsla(156, 72%, 76%, 1) 63%, hsla(187, 77%, 70%, 1) 100%); 
@@ -31,7 +31,7 @@ body {
 
 [data-theme="dark"] {
   background-image: var(--dark-bg);
-  --green:rgba(52, 198, 140, 0.818);
+  --turquoise: rgba(52, 198, 140, 0.818); 
 }
 
 [data-theme="light"] {

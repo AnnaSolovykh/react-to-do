@@ -9,7 +9,7 @@
     box-shadow: 0px 0px 20px var(--yellow) inset;
     width: 9rem;
     height: 7rem;
-    color: var(--turquoise);
+    color: var(--darkblue);
     padding: 2rem 3rem;
     font-size: 2rem;
     font-weight: 700;
@@ -17,7 +17,7 @@
 }
 
 .span {
-    color: var(--turquoise);;
+    color: var(--darkblue);;
     font-size: 2rem;
     font-weight: 700;
 }

@@ -39,7 +39,7 @@
 
 .text {
     font-family: 'Architects Daughter', cursive;
-    color: var(--green);
+    color: var(--turquoise);
     align-self: flex-start;
     text-align: center;
     font-size: 1.6rem;
@@ -48,7 +48,7 @@
 .author {
     font-family: 'Architects Daughter', cursive;
     align-self: flex-end;
-    color: var(--green);
+    color: var(--turquoise);
     font-size: 1.4rem;
 }
 

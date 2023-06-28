@@ -66,8 +66,8 @@ const Layout = () => {
                             onClick={ () => {toggleNavbar();  changeTheme()}}
                         >
                             {theme === "light" ? 
-                                <i className="fas fa-sun fa-2x" style={{color: "#223e42"}}></i> :
-                                <i className="fas fa-moon fa-2x" style={{color: "#223e42"}}></i>
+                                <i className="fas fa-moon fa-2x" style={{color: "#223e42"}}></i> :
+                                <i className="fas fa-sun fa-2x" style={{color: "#223e42"}}></i>
                             } 
                         </button>
                         <div className={style.navlinksContainer}>

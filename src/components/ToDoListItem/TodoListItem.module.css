@@ -61,6 +61,12 @@
     font-family: 'Architects Daughter', cursive;
     text-decoration: line-through;
     opacity: 50%;
+    max-height: 3rem;
+    overflow: auto;
+}
+
+.lineThrough::-webkit-scrollbar {
+    display: none;
 }
 
 .btn {

@@ -55,7 +55,7 @@ const TodoList = ({ setTodoList, todoList, onRemoveItem, updateData }) => {
                 borderRadius="0.5rem"
                 labelAlignment="center"
                 baseBgColor="transparent"
-                labelColor="#94b79d95"
+                labelColor="rgb(47, 157, 124)"
                 padding="0px 10px 20px 20px"
             />
             <h3 className={style.motivationText}>{motivation}</h3>

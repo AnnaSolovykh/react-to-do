@@ -1,15 +1,22 @@
 .navbarContainer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: flex-start;
-    width: 30rem;
+    width: 35rem;
     height: 100vh;
-    background-image: linear-gradient(90deg,#ecf0eef9, #eaf4f01d);
+    background-image: linear-gradient(90deg,#ecf0eef9,#eaf4f0e4,#eaf4f0c4, #eaf4f0a1,#eaf4f077,#eaf4f04a, #eaf4f025,#eaf4f00c, #eaf4f000);
     position: fixed;
     left:0;
     top:0;
     bottom:0;
+}
+
+.navlinksContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .link {
@@ -56,6 +63,17 @@ footer {
     display: none;
 } 
 
+.themeBtn {
+    margin-top: -4rem;
+    margin-left: 4rem;	
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+.icon {
+    color: var(--green);
+}
 
 @media all and (max-width: 900px) {
     .navbarContainer {
@@ -67,9 +85,19 @@ footer {
         background-image: linear-gradient(to bottom,#ecf0ee,#ecf0eef0, #ecf0eee0,#ecf0ee7c, #ecf0ee01); 
     }  
 
+    .navlinksContainer {
+        align-items: flex-end;
+    }
+    
+
     .link, .active {
         padding: 2rem;
         font-size: 3rem;
+    }
+
+    .themeBtn {
+        margin-top: 4rem;
+        margin-right: 2rem;
     }
 
     .menu {
@@ -102,6 +130,11 @@ footer {
     .link, .active {
         font-size: 2rem;
         padding: 1rem;
+    }
+
+    .themeBtn {
+        margin-top: 2rem;
+        margin-right: 1rem;
     }
 
     .signature {

@@ -9,8 +9,7 @@ import PropTypes from  "prop-types";
 import AddTodoForm from "../AddTodoForm/AddTodoForm";
 import TodoList from "../TodoList/TodoList"
 import style from "./TodoContainer.module.css";
-import SortingByDate from "../Sorting/SortingByDate";
-import SortingByAlphabet from "../Sorting/SortingByAlphabet";
+import Sorting from "../Sorting/Sorting";
 
 const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
     const [todoList, setTodoList] = useState([]);
@@ -22,12 +21,16 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
             switch (sortType) {
                 case "descendingAlphabet":
                     sortedList = [...sortedList].sort((a, b) => { 
-                        return (a.title > b.title ? -1 : b.title < a.title ? 1 : 0); 
+                        let loweredA = a.title.toLowerCase();
+                        let loweredB = b.title.toLowerCase();
+                        return (loweredA > loweredB ? -1 : loweredB < loweredA ? 1 : 0); 
                     });
                     break;  
                 case "ascendingAlphabet":
                     sortedList = [...sortedList].sort((a, b) => { 
-                        return (a.title < b.title ? -1 : b.title > a.title ? 1 : 0); 
+                        let loweredA = a.title.toLowerCase();
+                        let loweredB = b.title.toLowerCase();
+                        return (loweredA < loweredB ? -1 : loweredB > loweredA ? 1 : 0); 
                     });
                     break;
                 case "descendingDate":
@@ -205,8 +208,20 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
                     </div>
                 ):(<div className={style.todolistWrapper}> 
                         <div className={style.sortingButtons}> 
-                            <SortingByAlphabet setSortType={setSortType}/> 
-                            <SortingByDate setSortType={setSortType}/> 
+                        <Sorting 
+                            setSortType={setSortType} 
+                            ascending={"ascendingAlphabet"} 
+                            descending={"descendingAlphabet"} 
+                            ascendingText={"from Z to A"} 
+                            descendingText={"from A to Z"}
+                        />
+                        <Sorting 
+                            setSortType={setSortType} 
+                            ascending={"ascendingDate"} 
+                            descending={"descendingDate"} 
+                            ascendingText={"from newest"} 
+                            descendingText={"from oldest"}
+                        />
                         </div>
                         <TodoList 
                             setTodoList={setTodoList}

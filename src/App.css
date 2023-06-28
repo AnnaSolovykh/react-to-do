@@ -1,6 +1,7 @@
 html {
   box-sizing: border-box;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 *,
@@ -20,14 +21,28 @@ body {
 
 :root {
   --yellow: #edf1ce;
-  --green: #94b79d95;
+  --green:rgb(47, 157, 124);
   --turquoise: #16241f;
   --darkblue: #223e42;
-  --transparent: #f2f3ead7;
+  --transparent: #f2f3ead7;  
+  --light-bg: linear-gradient(90deg, hsla(67, 100%, 93%, 1) 0%, hsla(100, 73%, 85%, 1) 32%, hsla(156, 72%, 76%, 1) 63%, hsla(187, 77%, 70%, 1) 100%); 
+  --dark-bg: linear-gradient(0deg, hsla(300, 90%, 8%, 1) 0%, hsla(300, 89%, 18%, 1) 23%, hsla(240, 11%, 47%, 1) 48%, hsla(143, 34%, 72%, 1) 85%, hsla(151, 100%, 82%, 1) 100%);
+}
+
+[data-theme="dark"] {
+  background-image: var(--dark-bg);
+  --green:rgba(52, 198, 140, 0.818);
+}
+
+[data-theme="light"] {
+  background-image: var(--light-bg);
 }
 
 body {  
-  background-size: contain;
   background:#19282228;
-  background-image: linear-gradient(90deg, hsla(67, 100%, 93%, 1) 0%, hsla(100, 73%, 85%, 1) 32%, hsla(156, 72%, 76%, 1) 63%, hsla(187, 77%, 70%, 1) 100%);
+}
+
+main {
+  min-height: 100vh;
+  background-size: cover;
 }

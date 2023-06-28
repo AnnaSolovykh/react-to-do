@@ -12,22 +12,26 @@
 }
 
 .list {
+    margin-top: 0.5rem;
     height: 50vh;
     overflow: scroll; 
 }
 
-@media all and (max-width: 800px) {
-    .list {
-        height: 45vh;
-    }
+.list::-webkit-scrollbar {
+  display: none;
+}
+
+
+@media all and (max-width: 900px) {
+  .list {
+    height: 40vh;
+    margin-top: 1rem;
+  }
 }
 
 @media all and (max-width: 500px) {
-    .list {
-        height: 35vh;        
-    }
-    .container {
-        height: 28rem;
-        width: 25rem;
-    }
+  .container {
+      height: 28rem;
+      width: 25rem;
+  }
 }

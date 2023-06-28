@@ -4,17 +4,27 @@
     background-image: url(/src/resources/list-bg.png);
     background-size: cover;
     background-position: center;
+    transform: rotate(357deg) translate(7px,0px);
+    -webkit-transform: rotate(357deg) translate(7px,0px);
+    -moz-transform: rotate(357deg) translate(7px,0px); 
+    display: flex;
+
 } 
 
 .motivationText {
   color: var(--darkblue);
   margin: 0.9rem;
+  text-align: center;
 }
 
 .list {
     margin-top: 0.5rem;
-    height: 50vh;
+    flex: 1 1 auto;
+    height: 30rem;
     overflow: scroll; 
+    transform: rotate(3deg) translate(7px,0px);
+    -webkit-transform: rotate(3deg) translate(7px,0px);
+    -moz-transform: rotate(3deg) translate(7px,0px); 
 }
 
 .list::-webkit-scrollbar {
@@ -24,14 +34,25 @@
 
 @media all and (max-width: 900px) {
   .list {
-    height: 40vh;
     margin-top: 1rem;
   }
 }
 
 @media all and (max-width: 500px) {
+  .motivationText {
+    font-size: 1rem;
+  }
+  .list {
+    height: 30rem;
+  }
   .container {
-      height: 28rem;
-      width: 25rem;
+      height: 27rem;
+      width: 24rem;
+  }
+}
+
+@media all and (max-width: 420px) {
+  .list {
+    height: 22rem;
   }
 }

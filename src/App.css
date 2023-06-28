@@ -26,7 +26,9 @@ body {
   --darkblue: #223e42;
   --transparent: #f2f3ead7;  
   --light-bg: linear-gradient(90deg, hsla(67, 100%, 93%, 1) 0%, hsla(100, 73%, 85%, 1) 32%, hsla(156, 72%, 76%, 1) 63%, hsla(187, 77%, 70%, 1) 100%); 
-  --dark-bg: linear-gradient(0deg, hsla(300, 90%, 8%, 1) 0%, hsla(300, 89%, 18%, 1) 23%, hsla(240, 11%, 47%, 1) 48%, hsla(143, 34%, 72%, 1) 85%, hsla(151, 100%, 82%, 1) 100%);
+  /* --dark-bg: linear-gradient(0deg, hsla(300, 90%, 8%, 1) 0%, hsla(300, 89%, 18%, 1) 23%, hsla(240, 11%, 47%, 1) 48%, hsla(143, 34%, 72%, 1) 85%, hsla(151, 100%, 82%, 1) 100%); */
+  --dark-bg:  linear-gradient(0deg, hsla(281, 90%, 8%, 1) 0%, hsla(282, 81%, 12%, 1) 12%, hsla(288, 89%, 18%, 1) 28%, hsla(281, 46%, 31%, 1) 41%, hsla(278, 25%, 47%, 1) 57%, hsla(158, 31%, 70%, 1) 82%, hsla(151, 100%, 82%, 1) 100%);
+
 }
 
 [data-theme="dark"] {
@@ -43,6 +45,6 @@ body {
 }
 
 main {
-  min-height: 100vh;
+  min-height: 120vh;
   background-size: cover;
 }

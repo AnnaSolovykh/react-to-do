@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
 import PropTypes from  "prop-types";
-import Popup from "reactjs-popup";
 import style from "./Sorting.module.css";
 
 const Sorting = ({ 
@@ -10,8 +9,6 @@ const Sorting = ({
     descending, 
     ascendingText, 
     descendingText, 
-    ascendingPopup, 
-    descendingPopup 
 }) => {
     const [toggle, setToggle] = useState(true);
 
@@ -28,24 +25,13 @@ const Sorting = ({
     
     return (
         <div className={style.container}>
-            <Popup
-                trigger = {
-                    <button 
-                        className={style.button} 
-                        type="button" 
-                        onClick={handleToggle}
-                    > 
-                        {toggle ? descendingText : ascendingText} 
-                    </button>  
-                }
-                position="bottom"
-                on={['focus']}
-                arrow={false}
-                repositionOnResize={true}
-                contentStyle={ {fontSize: "0.8rem"} }
-            >
-                {toggle ? ascendingPopup : descendingPopup} 
-            </Popup>
+            <button 
+                className={style.button} 
+                type="button" 
+                onClick={handleToggle}
+            > 
+                {toggle ? descendingText : ascendingText} 
+            </button>  
         </div>
     );   
 }
@@ -58,6 +44,4 @@ Sorting.propTypes = {
     descending: PropTypes.string,
     ascendingText: PropTypes.string,
     descendingText: PropTypes.string,
-    ascendingPopup: PropTypes.string,
-    descendingPopup: PropTypes.string,
 }

@@ -278,8 +278,6 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
                                 descending={"descendingAlphabet"} 
                                 ascendingText={"A => Z"} 
                                 descendingText={"Z => A"}
-                                ascendingPopup={"Sorted A to Z!"} 
-                                descendingPopup={"Sorted Z to A!"}
                             />
                             <Sorting 
                                 setSortType={setSortType} 
@@ -287,8 +285,6 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
                                 descending={"descendingDate"} 
                                 ascendingText={"old => new"} 
                                 descendingText={"new => old"}
-                                ascendingPopup={"Oldest first!"} 
-                                descendingPopup={"Newest first!"}
                             />
                         </div>
                         <TodoList 

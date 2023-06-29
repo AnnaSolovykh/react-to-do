@@ -1,22 +1,20 @@
 import { Outlet, NavLink } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import style from "./Layout.module.css"
-
-const useLocalStorage = (storageKey, fallbackState) => {
-    const [value, setValue] = useState(
-        JSON.parse(localStorage.getItem(storageKey)) ?? fallbackState
-    );
-    
-    useEffect(() => {
-        localStorage.setItem(storageKey, JSON.stringify(value));
-    }, [value, storageKey]);
-    return [value, setValue];
-};
+import useLocalStorage from "./useLocalStorage";
+import style from "./Layout.module.css";
 
 const Layout = () => {
     const [activeMenu, setActiveMenu] = useState();
     const [burgerNavbar, setBurgerNavbar] = useState(false);
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+        
+    const defaultLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+    const [theme, setTheme] = useLocalStorage("theme", defaultLight ? "light" : "dark");
+    
+    const changeTheme = () => {
+        const newTheme = theme === "light" ? "dark" : "light";
+        setTheme(newTheme)
+    };
 
     const navbarRef = useRef();
 
@@ -46,15 +44,7 @@ const Layout = () => {
             window.removeEventListener('resize', changeWidth)
         };
     }, [])
-    
-    const defaultLight = window.matchMedia("(prefers-color-scheme: light)").matches;
-    const [theme, setTheme] = useLocalStorage("theme", defaultLight ? "light" : "dark");
-    
-    const changeTheme = () => {
-        const newTheme = theme === "light" ? "dark" : "light";
-        setTheme(newTheme)
-    };
-    
+
     return (
         <main data-theme={theme}>
             <div ref={navbarRef}>
@@ -63,7 +53,7 @@ const Layout = () => {
                         className={style.navbarContainer}>
                         <button 
                             className={style.themeBtn} 
-                            onClick={ () => {toggleNavbar();  changeTheme()}}
+                            onClick={ () => {toggleNavbar(); changeTheme()}}
                         >
                             {theme === "light" ? 
                                 <i className="fas fa-moon fa-2x" style={{color: "#223e42"}}></i> :
@@ -72,21 +62,24 @@ const Layout = () => {
                         </button>
                         <div className={style.navlinksContainer}>
                             <NavLink
-                                    className={activeMenu === "home" ? `${style.active}` : `${style.link}`}
-                                    onClick={ () => {toggleNavbar();  setActiveMenu("home")}}
-                                    id="home" to="/">Home
+                                className={activeMenu === "home" ? `${style.active}` : `${style.link}`}
+                                onClick={ () => {toggleNavbar(); setActiveMenu("home")}}
+                                id="home" to="/">
+                                    Home
                             </NavLink>
                             <NavLink 
-                                    className={activeMenu === "studies" ? `${style.active}` : `${style.link}`}
-                                    onClick={ () => {toggleNavbar();  setActiveMenu("studies")}}
-                                    id="studies" 
-                                    to="/studygoals">Study Goals
+                                className={activeMenu === "studies" ? `${style.active}` : `${style.link}`}
+                                onClick={ () => {toggleNavbar(); setActiveMenu("studies")}}
+                                id="studies" 
+                                to="/studygoals">
+                                    Study Goals
                             </NavLink> 
                             <NavLink
-                                onClick={ () => {toggleNavbar();  setActiveMenu("daily")}}
+                                onClick={ () => {toggleNavbar(); setActiveMenu("daily")}}
                                 className={activeMenu === "daily" ? `${style.active}` : `${style.link}`}
                                 id="daily"
-                                to="/dailygoals">Daily Goals
+                                to="/dailygoals">
+                                    Daily Goals
                             </NavLink>
                         </div>
                     </nav>

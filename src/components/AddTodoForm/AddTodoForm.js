@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import PropTypes from  "prop-types";
 import InputWithLabel from "../InputWithLabel/InputWithLabel";
-import style from "./AddTodoForm.module.css"
+import style from "./AddTodoForm.module.css";
 
 const AddTodoForm = ({onAddTodo}) => {
     const [todoTitle, setTodoTitle] = useState("");

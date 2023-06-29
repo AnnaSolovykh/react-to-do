@@ -24,7 +24,7 @@ const Clock = () => {
     };
   },[]);
 
-  const convertToTwoDigit = (number) => {
+  const convertToTwoDigits = (number) => {
     return number.toLocaleString('en-US', {
       minimumIntegerDigits: 2
     })
@@ -32,11 +32,11 @@ const Clock = () => {
   
   return (
     <div className={style.container}>
-      <span className={style.clock}>{convertToTwoDigit(time.hours)}</span>
+      <span className={style.clock}>{convertToTwoDigits(time.hours)}</span>
       <span className={style.span}>:</span>
-      <span className={style.clock}>{convertToTwoDigit(time.minutes)}</span>
+      <span className={style.clock}>{convertToTwoDigits(time.minutes)}</span>
       <span className={style.span}>:</span>
-      <span className={style.clock}>{convertToTwoDigit(time.seconds)}</span>
+      <span className={style.clock}>{convertToTwoDigits(time.seconds)}</span>
     </div>
   );  
 }

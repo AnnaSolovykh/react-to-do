@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import Clock from "../Clock/Clock";
-import style from "./Home.module.css"
+import style from "./Home.module.css";
 
 const Home = () => {
     const [quote, setQuote] = useState("");
@@ -15,11 +15,11 @@ const Home = () => {
             }
             const data = await response.json();
             let randomNum = Math.floor(Math.random()*data.length);
-            let randomQuote = data[randomNum]
+            let randomQuote = data[randomNum];
             setQuote(randomQuote);
 
         } catch (error) {
-            console.log(error.message)
+            console.log(error.message);
             }
     }, []);
 
@@ -33,7 +33,7 @@ const Home = () => {
             const interval = setInterval(getQuotes, 7000);
             return () => clearInterval(interval);
         }
-        }, [getQuotes]);
+    }, [getQuotes]);
 
     return (
         <div className={style.wrapper}>       

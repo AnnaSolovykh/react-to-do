@@ -1,11 +1,10 @@
 .container {
-    height: 34rem; 
-    width: 31rem;
-    background-image: url(/src/resources/list-bg.png);
-    background-size: cover;
-    background-position: center;
-    display: flex;
-
+  height: 34rem; 
+  width: 31rem;
+  background-image: url(/src/resources/list-bg.png);
+  background-size: cover;
+  background-position: center;
+  display: flex;
 } 
 
 .motivationText {
@@ -15,10 +14,10 @@
 }
 
 .list {
-    margin-top: 0.5rem;
-    flex: 1 1 auto;
-    height: 30rem;
-    overflow: scroll; 
+  margin-top: 1rem;
+  flex: 1 1 auto;
+  height: 30rem;
+  overflow: scroll; 
 }
 
 .list::-webkit-scrollbar {
@@ -40,8 +39,8 @@
     height: 30rem;
   }
   .container {
-      height: 27rem;
-      width: 24rem;
+    height: 27rem;
+    width: 24rem;
   }
 }
 

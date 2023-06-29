@@ -5,19 +5,27 @@ import TodoListItem from "../ToDoListItem/ToDoListItem";
 import style from "./TodoList.module.css";
 
 
-const TodoList = ({ setTodoList, todoList, onRemoveItem, updateData }) => {
-    const [motivation, setMotivation] = useState("")
+const TodoList = ({ 
+    setTodoList, 
+    todoList, 
+    onRemoveItem, 
+    updateData, 
+}) => {
+    const [motivation, setMotivation] = useState("");
     
     const handleCheck = (id) => {
         const checkedGoals = todoList.map(todo => {
             if (todo.id === id) {
-                let checkedItem = {...todo, isChecked: !todo.isChecked};
+                let checkedItem = {
+                    ...todo, 
+                    isChecked: !todo.isChecked
+                };
                 return checkedItem;
             } else {
                 return todo;
             }
         });
-        setTodoList(checkedGoals)
+        setTodoList(checkedGoals);
     };
 
     const completedTasks = todoList.filter(task => task.isChecked);
@@ -82,6 +90,7 @@ const TodoList = ({ setTodoList, todoList, onRemoveItem, updateData }) => {
 export default TodoList;
 
 TodoList.propTypes = {
+    setTodoList: PropTypes.func,
     todoList: PropTypes.array, 
     onRemoveItem: PropTypes.func,
     updateDate: PropTypes.func,

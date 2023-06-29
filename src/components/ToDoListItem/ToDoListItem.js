@@ -8,12 +8,12 @@ import {ReactComponent as Delete} from "../../resources/delete.svg";
 import style from "./TodoListItem.module.css";
 
 
-const TodoListItem = ({todo, onRemoveItem, updateData, handleCheck}) => {
+const TodoListItem = ({ todo, onRemoveItem, updateData, handleCheck }) => {
     const [editing, setEditing] = useState(true);
     const [newTitle, setNewTitle] = useState(todo.title);
     const [checked, setChecked] = useState(false);
 
-    const date =  new Date(todo.date).toLocaleDateString('en-us', { month: 'short', day: 'numeric'  });
+    const date =  new Date(todo.date).toLocaleDateString('en-us', { month: 'short', day: 'numeric' });
 
     const editItem = (event) => {
         const editedTitle = event.target.value;
@@ -53,12 +53,12 @@ const TodoListItem = ({todo, onRemoveItem, updateData, handleCheck}) => {
                     </p> 
                     <button 
                         className={`${style.btn} ${style.editBtn}`}
-                        onClick={()=> setEditing(false) }>
+                        onClick={()=> setEditing(false)}>
                             <Edit className={style.icon}/>
                     </button>
                     <button 
                         className={`${style.btn} ${style.doneBtn}`}
-                        onClick={()=> onRemoveItem(todo.id) }>
+                        onClick={()=> onRemoveItem(todo.id)}>
                             <Delete className={style.icon}/>
                     </button>
                 </div>
@@ -71,7 +71,6 @@ const TodoListItem = ({todo, onRemoveItem, updateData, handleCheck}) => {
                         className={style.formInput} 
                         value={newTitle} 
                         onChange={editItem}>
-
                     </input> 
                     <button 
                         className={`${style.btn} ${style.saveBtn}`}
@@ -79,8 +78,7 @@ const TodoListItem = ({todo, onRemoveItem, updateData, handleCheck}) => {
                             <Save className={style.formIcon}/> 
                     </button>
                 </form>
-            )}
-            
+            )}  
         </div>
     );
 };
@@ -91,4 +89,5 @@ TodoListItem.propTypes = {
     todo: PropTypes.object,
     onRemoveItem: PropTypes.func,
     updateDate: PropTypes.func,
+    handleCheck: PropTypes.func,
 }

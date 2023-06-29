@@ -4,9 +4,6 @@
     background-image: url(/src/resources/list-bg.png);
     background-size: cover;
     background-position: center;
-    transform: rotate(357deg) translate(7px,0px);
-    -webkit-transform: rotate(357deg) translate(7px,0px);
-    -moz-transform: rotate(357deg) translate(7px,0px); 
     display: flex;
 
 } 
@@ -22,9 +19,6 @@
     flex: 1 1 auto;
     height: 30rem;
     overflow: scroll; 
-    transform: rotate(3deg) translate(7px,0px);
-    -webkit-transform: rotate(3deg) translate(7px,0px);
-    -moz-transform: rotate(3deg) translate(7px,0px); 
 }
 
 .list::-webkit-scrollbar {
@@ -46,8 +40,8 @@
     height: 30rem;
   }
   .container {
-      height: 25.5rem;
-      width: 22.5rem;
+      height: 27rem;
+      width: 24rem;
   }
 }
 

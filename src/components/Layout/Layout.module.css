@@ -5,7 +5,6 @@
     align-items: flex-start;
     width: 27rem;
     background-image: linear-gradient(90deg,#ecf0eef9, #eaf4f01d);
-    /* background-image: linear-gradient(90deg,#ecf0eef9,#eaf4f0e4,#eaf4f0c4, #eaf4f0a1,#eaf4f077,#eaf4f04f, #eaf4f02d, #eaf4f013, #eaf4f000); */
     height: 100vh;
 
     position: fixed;

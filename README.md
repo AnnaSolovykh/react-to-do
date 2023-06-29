@@ -15,7 +15,7 @@ In the upper left corner there is an icon designed for changing the color theme 
 <img width="1000" alt="Screen Shot 2023-06-29 at 22 58 11" src="https://github.com/AnnaSolovykh/react-to-do/assets/114008959/7aac00df-4b9a-4d82-8d7c-2c0f497b36ad">
 
 ### Goals pages
-On the goal pages the input where you can add a goal is focused. The tasks added are saved in the Airtable API.
+On the goals pages the input where you can add a goal is focused. The tasks added are saved in the Airtable API.
 
 <img width="1000" alt="Screen Shot 2023-06-29 at 22 58 35" src="https://github.com/AnnaSolovykh/react-to-do/assets/114008959/f5950925-2ffb-4b80-9386-70ba9cded706">
 
@@ -40,9 +40,9 @@ By default the goals are sorted by date from the oldest. There are two buttons l
 The website is optimized both for mobile phones and tablets. The responsive navbar is made as a hamburger menu. 
 The dropped down menu can be closed either by clicking X close button, or by clicking outside of the navbar area, or after clicking on the link.
 
-<img width="500" alt="Screen Shot 2023-06-29 at 23 02 14" src="https://github.com/AnnaSolovykh/react-to-do/assets/114008959/3efeaca1-2017-4e45-a275-7f879ad7cf5c">
+<img width="800" alt="Screen Shot 2023-06-29 at 23 02 14" src="https://github.com/AnnaSolovykh/react-to-do/assets/114008959/3efeaca1-2017-4e45-a275-7f879ad7cf5c">
 
-<img width="500" alt="Screen Shot 2023-06-29 at 23 02 29" src="https://github.com/AnnaSolovykh/react-to-do/assets/114008959/f41a956e-ed71-4dbd-95bd-f61da55839cb">
+<img width="800" alt="Screen Shot 2023-06-29 at 23 02 29" src="https://github.com/AnnaSolovykh/react-to-do/assets/114008959/f41a956e-ed71-4dbd-95bd-f61da55839cb">
 
 <img width="400" alt="Screen Shot 2023-06-29 at 23 02 47" src="https://github.com/AnnaSolovykh/react-to-do/assets/114008959/ac51e57f-2445-470b-bdba-63bdcd2af01b">
 

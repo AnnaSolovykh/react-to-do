@@ -91,6 +91,7 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
                 id: todo.id,
                 title: todo.fields.title,
                 date: todo.createdTime,
+                isChecked: todo.fields.isChecked,
                 }
             return newTodo
             });
@@ -140,6 +141,7 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
                 id: todo.id, 
                 title: todo.fields.title,
                 date: todo.createdTime,
+                isChecked: todo.fields.isChecked,
             };
 
             setTodoList([...todoList, newTodo]);
@@ -189,7 +191,7 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
         };
     
         const options = {
-            method: "PUT",
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${tableKey}`,
@@ -204,11 +206,55 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
                 ${response.status}`;
                 throw new Error(message);
             }
+
         } catch (error) {
             console.log(error.message);
             return null;
         }
     };
+    
+    const handleCheck = async(checked, id) => {
+        const url = `https://api.airtable.com/v0/${tableBaseId}/${tableName}/${id}`;
+        const airtableData = {
+            fields: {
+                isChecked: Boolean(!checked),
+            },
+        };
+    
+        const options = {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${tableKey}`,
+            },
+            body: JSON.stringify(airtableData),
+        };
+    
+        try {
+            const response = await fetch(url, options);
+            if (!response.ok) {
+            const message = `Error has occurred:
+                ${response.status}`;
+                throw new Error(message);
+            }
+            const checkedGoals = todoList.map(todo => {
+                if (todo.id === id) {
+                    let checkedItem = {
+                        ...todo, 
+                        isChecked: !todo.isChecked
+                    };
+                    return checkedItem;
+                } else {
+                    return todo;
+                }
+            });
+            setTodoList(checkedGoals);
+        } catch (error) {
+            console.log(error.message);
+            return null;
+        }
+    };
+    
 
     return (
         <>
@@ -250,6 +296,7 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
                             todoList={sortedData} 
                             onRemoveItem={removeTodo} 
                             updateData={updateData}
+                            handleCheck={handleCheck}
                         />
                     </div>
                 )

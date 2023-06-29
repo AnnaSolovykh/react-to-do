@@ -5,28 +5,8 @@ import TodoListItem from "../ToDoListItem/ToDoListItem";
 import style from "./TodoList.module.css";
 
 
-const TodoList = ({ 
-    setTodoList, 
-    todoList, 
-    onRemoveItem, 
-    updateData, 
-}) => {
+const TodoList = ({ todoList, onRemoveItem, updateData, handleCheck }) => {
     const [motivation, setMotivation] = useState("");
-    
-    const handleCheck = (id) => {
-        const checkedGoals = todoList.map(todo => {
-            if (todo.id === id) {
-                let checkedItem = {
-                    ...todo, 
-                    isChecked: !todo.isChecked
-                };
-                return checkedItem;
-            } else {
-                return todo;
-            }
-        });
-        setTodoList(checkedGoals);
-    };
 
     const completedTasks = todoList.filter(task => task.isChecked);
     let percentageComplete = Math.round((completedTasks.length / todoList.length) * 100);

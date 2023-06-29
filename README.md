@@ -44,6 +44,7 @@ The dropped down menu can be closed either by clicking X close button, or by cli
 
 <img width="400" alt="Screen Shot 2023-06-29 at 23 02 29" src="https://github.com/AnnaSolovykh/react-to-do/assets/114008959/f41a956e-ed71-4dbd-95bd-f61da55839cb">
 
+ <br />
 <img width="200" alt="Screen Shot 2023-06-29 at 23 02 47" src="https://github.com/AnnaSolovykh/react-to-do/assets/114008959/ac51e57f-2445-470b-bdba-63bdcd2af01b">
 
 <img width="200" alt="Screen Shot 2023-06-29 at 23 02 58" src="https://github.com/AnnaSolovykh/react-to-do/assets/114008959/2f1e7d6a-1633-4d85-b563-fdadbf0a57e3">

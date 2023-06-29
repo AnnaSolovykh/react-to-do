@@ -13,7 +13,7 @@ const Layout = () => {
     
     const changeTheme = () => {
         const newTheme = theme === "light" ? "dark" : "light";
-        setTheme(newTheme)
+        setTheme(newTheme);
     };
 
     const navbarRef = useRef();
@@ -27,7 +27,7 @@ const Layout = () => {
         document.addEventListener("mousedown", handler);
 
         return() => {
-            document.removeEventListener("mousedown", handler)
+            document.removeEventListener("mousedown", handler);
         };
     });
 
@@ -41,9 +41,9 @@ const Layout = () => {
         };
         window.addEventListener('resize', changeWidth);
         return () => {
-            window.removeEventListener('resize', changeWidth)
+            window.removeEventListener('resize', changeWidth);
         };
-    }, [])
+    }, []);
 
     return (
         <main data-theme={theme}>

@@ -15,7 +15,7 @@ const TodoListItem = ({ todo, onRemoveItem, updateData, handleCheck }) => {
 
     const handleCheckInput = () => {
         setChecked(!checked);
-        handleCheck(checked, todo.id)
+        handleCheck(checked, todo.id);
     };
 
     return(

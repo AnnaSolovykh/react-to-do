@@ -1,0 +1,102 @@
+.wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10rem;
+}
+
+.container {
+    display: flex; 
+    flex-direction: column;
+    width: 50rem;
+    padding: 2rem;
+} 
+
+.heading {
+    color: var(--darkblue);
+    font-size: 3rem;
+    font-weight: 900;
+    text-align: center;
+}
+
+.subheading {
+    color: var(--darkblue);
+    font-size: 1.7rem;
+    font-weight: 700;
+    text-align: left;
+    align-self: flex-end; 
+}
+
+.quoteWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 40rem;
+    height: 20rem;
+    padding: 3rem;
+}
+
+.text {
+    font-family: 'Architects Daughter', cursive;
+    color: var(--turquoise);
+    align-self: flex-start;
+    text-align: center;
+    font-size: 1.6rem;
+}
+
+.author {
+    font-family: 'Architects Daughter', cursive;
+    align-self: flex-end;
+    color: var(--turquoise);
+    font-size: 1.4rem;
+}
+
+@media all and (max-width: 900px) {
+    .wrapper {
+        padding: 0rem;
+    }
+    .container {
+        width: 40rem;
+        padding: 3rem;
+    } 
+    .quoteWrapper {
+        width: 30rem;
+        padding: 3rem;
+    }
+}
+
+@media all and (max-width: 500px) {
+    .container {
+        width: 25rem;
+        padding: 2rem;
+    } 
+    .quoteWrapper {
+        width: 20rem;
+        padding: 2rem;
+    }
+
+    .heading {
+        margin-top: 2rem;
+        font-size: 2rem;
+    }
+
+    .subheading {
+        color: var(--darkblue);
+        font-size: 1.3rem;
+    }
+
+    .quoteWrapper {
+        width: 25rem;
+        height: 20rem;
+        padding: 2rem;
+    }
+
+    .text {
+        font-size: 1.3rem;
+    }
+
+    .author {
+        font-size: 1.2rem;
+    }
+}

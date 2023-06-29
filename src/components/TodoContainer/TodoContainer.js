@@ -8,46 +8,65 @@ import { RotatingLines } from 'react-loader-spinner'
 import PropTypes from  "prop-types";
 import AddTodoForm from "../AddTodoForm/AddTodoForm";
 import TodoList from "../TodoList/TodoList"
+import Sorting from "../Sorting/Sorting";
 import style from "./TodoContainer.module.css";
-import SortingByDate from "../Sorting/SortingByDate";
-import SortingByAlphabet from "../Sorting/SortingByAlphabet";
 
 const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
     const [todoList, setTodoList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [sortType, setSortType] = useState("default");
-    
+
     const sortedData = useMemo(() => {
-            let sortedList = todoList;
-            switch (sortType) {
-                case "descendingAlphabet":
-                    sortedList = [...sortedList].sort((a, b) => { 
-                        return (a.title > b.title ? -1 : b.title < a.title ? 1 : 0); 
-                    });
-                    break;  
-                case "ascendingAlphabet":
-                    sortedList = [...sortedList].sort((a, b) => { 
-                        return (a.title < b.title ? -1 : b.title > a.title ? 1 : 0); 
-                    });
-                    break;
-                case "descendingDate":
-                    sortedList =  [...sortedList].sort((a, b) => { 
-                        return (new Date(a.date) > new Date(b.date) ? -1 : new Date(b.date) < new Date(a.date)? 1 : 0); 
-                    });
-                    break;
-                case "ascendingDate":
-                    sortedList =  [...sortedList].sort((a, b) => { 
-                        return (new Date(a.date) < new Date(b.date) ? -1 : new Date(b.date) > new Date(a.date) ? 1 : 0); 
-                    });
-                    break;
-                default: 
-                    return sortedList;
-            }   
+        let sortedList = todoList;
+
+        const ascendingAlphabet = () => {
+            sortedList = [...sortedList].sort((a, b) => { 
+                let loweredA = a.title.toLowerCase();
+                let loweredB = b.title.toLowerCase();
+                return (loweredA < loweredB ? -1 : loweredB > loweredA ? 1 : 0); 
+            });
+        };
+    
+        const descendingAlphabet = () => {
+            sortedList = [...sortedList].sort((a, b) => { 
+                let loweredA = a.title.toLowerCase();
+                let loweredB = b.title.toLowerCase();
+                return (loweredA > loweredB ? -1 : loweredB < loweredA ? 1 : 0); 
+            });
+        }
+        
+        const ascendingDate = () => {
+            sortedList =  [...sortedList].sort((a, b) => { 
+                return (new Date(a.date) < new Date(b.date) ? -1 : new Date(b.date) > new Date(a.date) ? 1 : 0); 
+            });
+        };
+    
+        const descendingDate = () => {
+            sortedList =  [...sortedList].sort((a, b) => { 
+                return (new Date(a.date) > new Date(b.date) ? -1 : new Date(b.date) < new Date(a.date)? 1 : 0); 
+            });
+        }
+    
+        switch (sortType) {
+            case "descendingAlphabet":
+                descendingAlphabet()
+                break;  
+            case "ascendingAlphabet":
+                ascendingAlphabet()
+                break;
+            case "descendingDate":
+                descendingDate()
+                break;
+            case "ascendingDate":
+                ascendingDate()
+                break;
+            default: 
+                ascendingDate()
+        }   
         return sortedList;
     }, [todoList, sortType]);
 
     const fetchData = useCallback(async() => {
-
         const url = `https://api.airtable.com/v0/${tableBaseId}/${tableName}/?view=Grid%20view`;
 
         const options = {
@@ -68,13 +87,14 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
             const data = await response.json();
 
             const todos = data.records.map((todo) => {
-                const newTodo ={
+                const newTodo = {
                 id: todo.id,
                 title: todo.fields.title,
                 date: todo.createdTime,
+                isChecked: todo.fields.isChecked,
                 }
             return newTodo
-            })
+            });
 
             setTodoList(todos);
             setIsLoading(false);
@@ -92,6 +112,7 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
 
     const addTodo = async (title) => {
         const url = `https://api.airtable.com/v0/${tableBaseId}/${tableName}`;
+
         const airtableData = {
             fields: {
                 title: title,
@@ -120,6 +141,7 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
                 id: todo.id, 
                 title: todo.fields.title,
                 date: todo.createdTime,
+                isChecked: todo.fields.isChecked,
             };
 
             setTodoList([...todoList, newTodo]);
@@ -151,6 +173,7 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
             const newTodoList = todoList.filter(
                 item => item.id !== id 
             );
+
             setTodoList(newTodoList);
     
         } catch (error) {
@@ -168,7 +191,7 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
         };
     
         const options = {
-            method: "PUT",
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${tableKey}`,
@@ -183,12 +206,56 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
                 ${response.status}`;
                 throw new Error(message);
             }
+
         } catch (error) {
             console.log(error.message);
             return null;
         }
     };
     
+    const handleCheck = async(checked, id) => {
+        const url = `https://api.airtable.com/v0/${tableBaseId}/${tableName}/${id}`;
+        const airtableData = {
+            fields: {
+                isChecked: Boolean(!checked),
+            },
+        };
+    
+        const options = {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${tableKey}`,
+            },
+            body: JSON.stringify(airtableData),
+        };
+    
+        try {
+            const response = await fetch(url, options);
+            if (!response.ok) {
+            const message = `Error has occurred:
+                ${response.status}`;
+                throw new Error(message);
+            }
+            const checkedGoals = todoList.map(todo => {
+                if (todo.id === id) {
+                    let checkedItem = {
+                        ...todo, 
+                        isChecked: !todo.isChecked
+                    };
+                    return checkedItem;
+                } else {
+                    return todo;
+                }
+            });
+            setTodoList(checkedGoals);
+        } catch (error) {
+            console.log(error.message);
+            return null;
+        }
+    };
+    
+
     return (
         <>
             <h1 className={style.h1}>{tableName}</h1>
@@ -205,18 +272,31 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
                     </div>
                 ):(<div className={style.todolistWrapper}> 
                         <div className={style.sortingButtons}> 
-                            <SortingByAlphabet setSortType={setSortType}/> 
-                            <SortingByDate setSortType={setSortType}/> 
+                            <Sorting 
+                                setSortType={setSortType} 
+                                ascending={"ascendingAlphabet"} 
+                                descending={"descendingAlphabet"} 
+                                ascendingText={"A => Z"} 
+                                descendingText={"Z => A"}
+                            />
+                            <Sorting 
+                                setSortType={setSortType} 
+                                ascending={"ascendingDate"} 
+                                descending={"descendingDate"} 
+                                ascendingText={"old => new"} 
+                                descendingText={"new => old"}
+                            />
                         </div>
                         <TodoList 
+                            setTodoList={setTodoList}
                             todoList={sortedData} 
                             onRemoveItem={removeTodo} 
                             updateData={updateData}
+                            handleCheck={handleCheck}
                         />
                     </div>
                 )
-                }
-            
+            }
         </>
     );
 }

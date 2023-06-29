@@ -1,80 +1,163 @@
-:root {
-    --yellow: #edf1ce;
-    --green: #94b79d95;
-    --turquoise: #19282228;
-    --darkblue: #223e42;
-    --transparent: #f2f3ead7;
-}
-
 .container {
-    display: flex;
-    align-content: center;
+    margin-top: 2.2rem;
 }
 
 .conditionalContainer {
     display: grid;
-    gap: 10px 15px;
-    grid-template-columns: 100px 70px 40px 30px; 
-    padding: 0 3rem;
+    gap: 0.4rem;    
+    grid-template-columns: 1fr 5fr 2.2fr 1fr 1fr;   
+    grid-template-rows: 1rem;  
+    margin-left: 5.5rem; 
+    margin-right: 5rem;
+    align-items: center;
+}
+
+.conditionalContainerForm{
+    display: grid;
+    gap: 1.3rem;  
+    grid-template-columns: 8.7fr 1fr;  
+    margin-left: 5.5rem;
+    margin-right: 5rem;
+    grid-template-rows: 1rem; 
+    align-items: center; 
 }
 
 .label {
     font-style: italic;
-    font-size: 1.3rem;
+    max-height: 2.7rem;
+    font-size: 1.2rem;
     line-height: 1;
     word-wrap: break-word;
+    font-family: 'Architects Daughter', cursive;
+    color: var(--darkblue);
+    overflow: auto;
 }
 
-.doneBtn {
-    background-image: url(/src/resources/done.png);
+.label::-webkit-scrollbar {
+    display: none;
 }
 
-.editBtn {
-    background-image: url(/src/resources/edit.png);
+.icon {
+    height: 25px;
+    width: 25px;
 }
 
-.saveBtn {
-    background-image: url(/src/resources/save.png);
+.icon:hover, .formIcon:hover {
+    transition: all 0.1s ease-out;
+    transform: scale(1.1);
+} 
+
+.formIcon {
+    margin-top: 0.3rem;
+    height: 30px;
+    width: 30px;
+}
+
+.lineThrough {
+    font-style: italic;
+    font-size: 1.2rem;
+    max-height: 2.7rem;
+    line-height: 1;
+    word-wrap: break-word;
+    font-family: 'Architects Daughter', cursive;
+    text-decoration: line-through;
+    opacity: 50%;
+    overflow: auto;
+}
+
+.lineThrough::-webkit-scrollbar {
+    display: none;
 }
 
 .btn {
     background-size: cover;
-    width: 1rem;
-    height: 1rem;
     border: none;
     background-color: transparent;
     cursor: pointer;
-    padding: 1.4rem;
-}
-
-.editForm {
-    margin-bottom: 1rem;
 }
 
 .formInput {
-    font-size: 1rem;
-    font-style: italic;
+    font-size: 1.1rem;
     padding: 0.3rem 0.2rem;
     border-style: inset;
     border-radius:  0.5rem;
     color: var(--darkblue);
     border-color: var(--darkblue);
     background-color: var(--transparent);
-    transition: 0.4s ease-in-out;
+    font-family: 'Architects Daughter', cursive;
 }
 
 .formInput:focus {
-    background-color: white;
-    padding: 0.5rem 0.4rem;
+    transition: 0.4s ease-in-out;
+    padding: 0.3rem 1rem;
+    border-color: var(--turquoise);
+    background-color: var(--yellow);
+    outline: none;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    background-color: var(--yellow);
+    font: inherit;
+    color: var(--yellow);
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid var(--turquoise);
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center; 
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    transform: scale(0);
+    transition:120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--turquoise);
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+input[type="checkbox"]:focus {
+    outline: max(2px, 0.15em) solid var(--turquoise);
+    outline-offset: max(2px, 0.15em);
+}
+
+@media all and (max-width: 900px)  {
+    .label, .lineThrough  {
+        font-size: 1rem;
+    }
+
+    .conditionalContainer {
+        gap: 0.7rem; 
+        grid-template-rows: 1rem;  
+        grid-template-columns: 20px 150px 51px 25px 20px; 
+    }
+    .conditionalContainerForm {
+        grid-template-rows: 1rem;  
+        grid-template-columns: 230px 20px; 
+    }
+
 }
 
 @media all and (max-width: 500px) {
     .conditionalContainer {
-        gap: 5px 10px;
-        grid-template-columns: 50px 50px 30px 30px; 
+        margin-left: 3.9rem; 
+        gap: 0.4rem; 
+        grid-template-rows: 0.7rem;  
+        grid-template-columns: 20px 105px 51px 25px 20px; 
     }
-    .label {
-        font-size: 1rem;
+    .conditionalContainerForm {
+        margin-left: 3.9rem; 
+        grid-template-rows: 0.7rem;  
+        gap: 0.4rem; 
+        grid-template-columns: 200px 20px; 
+    }
+    .label, .lineThrough  {
         padding: 0;
     }
     .btn {

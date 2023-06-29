@@ -1,30 +1,51 @@
-:root {
-    --yellow: #edf1ce;
-    --green: #94b79d95;
-    --turquoise: #19282228;
-    --darkblue: #223e42;
-    --transparent: #f2f3ead7;
-}
-
 .container {
-    height: 32rem;
-    width: 29rem;
-    background-image: url(/src/resources/list-bg.png);
-    background-size: cover;
-    background-position: center;
-    margin: auto;
+  height: 34rem; 
+  width: 31rem;
+  background-image: url(/src/resources/list-bg.png);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+} 
+
+.motivationText {
+  color: var(--darkblue);
+  margin: 0.9rem;
+  text-align: center;
 }
 
 .list {
-    height: 60vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+  margin-top: 1rem;
+  flex: 1 1 auto;
+  height: 30rem;
+  overflow: scroll; 
+}
+
+.list::-webkit-scrollbar {
+  display: none;
+}
+
+
+@media all and (max-width: 900px) {
+  .list {
+    margin-top: 1rem;
+  }
 }
 
 @media all and (max-width: 500px) {
-    .container {
-        height: 23rem;
-        width: 20rem;
-    }
+  .motivationText {
+    font-size: 1rem;
+  }
+  .list {
+    height: 30rem;
+  }
+  .container {
+    height: 27rem;
+    width: 24rem;
+  }
+}
+
+@media all and (max-width: 420px) {
+  .list {
+    height: 22rem;
+  }
 }

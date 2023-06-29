@@ -1,6 +1,8 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TodoContainer from "./components/TodoContainer/TodoContainer";
-import style from "./App.module.css"
+import "./App.css"
+import Layout from "./components/Layout/Layout";
+import Home from "./components/Home/Home";
 
 function App() {
   const tableName = process.env.REACT_APP_TABLE_NAME;
@@ -11,37 +13,36 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <nav className={style.navbarContainer}>
-          <Link className={style.link} to="/" >Studies Tasks Board</Link> 
-          <Link className={style.link} to="/TodoContainer" >Family Tasks Board</Link>
-        </nav>
         <Routes>
-          <Route 
-            index 
-            element=
-            {<TodoContainer  
-              tableName={studiesTableName}
-              tableKey={tableKey}
-              tableBaseId={tableBaseId}
-            />}
-          />  
-          <Route 
-            path="TodoContainer" 
-            element=
+          <Route element={<Layout/>}>
+            <Route 
+              index
+              element=
+              {<Home
+              />}
+            />  
+            <Route 
+              path="studygoals"  
+              element=
               {<TodoContainer  
-                tableName={tableName}
+                tableName={studiesTableName}
                 tableKey={tableKey}
                 tableBaseId={tableBaseId}
               />}
-          />        
+            />  
+            <Route 
+              path="dailygoals" 
+              element=
+                {<TodoContainer  
+                  tableName={tableName}
+                  tableKey={tableKey}
+                  tableBaseId={tableBaseId}
+                />}
+            />        
+          </Route>
         </Routes>
       </BrowserRouter>  
-      <footer>
-        <div className={style.phantom}></div>
-        <h3 className={style.signature}>Built by Anna Solovykh for CTD</h3>
-      </footer>
     </>
-
   );
 }
 

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 import PropTypes from  "prop-types";
 import InputWithLabel from "../InputWithLabel/InputWithLabel";
-import style from "./AddTodoForm.module.css"
+import style from "./AddTodoForm.module.css";
 
 const AddTodoForm = ({onAddTodo}) => {
     const [todoTitle, setTodoTitle] = useState("");
@@ -14,7 +15,11 @@ const AddTodoForm = ({onAddTodo}) => {
     const handleAddTodo = (event) => {
         event.preventDefault();
         if (todoTitle=== "" || todoTitle === " ") {
-            alert("Write something!")
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: "Type your goal please!",
+            })
         } else {
             onAddTodo(todoTitle);
             setTodoTitle("");
@@ -25,16 +30,14 @@ const AddTodoForm = ({onAddTodo}) => {
         <form 
             onSubmit={handleAddTodo}
             className={style.addToDoForm}>
-
             <InputWithLabel 
                 id="todoTitle"
                 value={todoTitle} 
                 onInputChange={handleTitleChange}
-                placeholder="Be kind to yourself..."
+                placeholder="A new goal to achieve..."
             >
-                <strong>A new task to deal with:</strong>
+                <p>Meet your goals to fulfill your dreams!</p>
             </InputWithLabel>   
-
             <button className={style.button} type="submit">Add</button>
         </form>
     );

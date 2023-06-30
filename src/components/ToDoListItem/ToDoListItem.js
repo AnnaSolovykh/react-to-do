@@ -10,11 +10,11 @@ const TodoListItem = ({ todo, onRemoveItem, updateData, handleCheck }) => {
     const [newTitle, setNewTitle] = useState(todo.title);
     const [editing, setEditing] = useState(true);
     const [checked, setChecked] = useState(todo.isChecked);
-    
+
     const date =  new Date(todo.date).toLocaleDateString('en-us', { month: 'short', day: 'numeric' });
 
-    const handleCheckInput = () => {
-        setChecked(!checked);
+    const handleCheckInput = (e) => {
+        setChecked(e.target.checked);
         handleCheck(checked, todo.id);
     };
 

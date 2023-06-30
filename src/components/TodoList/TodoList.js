@@ -22,8 +22,11 @@ const TodoList = ({ todoList, onRemoveItem, updateData, handleCheck }) => {
         if (percentageComplete >= 25 && percentageComplete < 50) {
             setMotivation("Success breeds success!") 
         } 
-        if (percentageComplete >= 50 && percentageComplete < 75){
+        if (percentageComplete === 50){
             setMotivation("You are halfway through! Great job!") 
+        } 
+        if (percentageComplete > 50 && percentageComplete < 75){
+            setMotivation("Impossible is for the unwilling!") 
         } 
         if (percentageComplete >= 75 && percentageComplete < 100) {
             setMotivation("You are almost there! Seize the day!") 
@@ -70,7 +73,7 @@ const TodoList = ({ todoList, onRemoveItem, updateData, handleCheck }) => {
 export default TodoList;
 
 TodoList.propTypes = {
-    setTodoList: PropTypes.func,
+    handleCheck: PropTypes.func,
     todoList: PropTypes.array, 
     onRemoveItem: PropTypes.func,
     updateDate: PropTypes.func,

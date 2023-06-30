@@ -4,7 +4,7 @@
 Demo: https://todolist-annasolo.vercel.app
 
 ### The home page
-The home page features the digital clock and inspiring quotes being fetched from API every 7 seconds.
+The home page features the digital clock and inspiring quotes being fetched from API every 7 seconds (the preview of the latter is not supported by the deployment with Vercel).
 
 <img width="1000" alt="Screen Shot 2023-06-29 at 22 57 29" src="https://github.com/AnnaSolovykh/react-to-do/assets/114008959/09b03a35-3564-4801-9f8a-ff246ed0eceb">
 

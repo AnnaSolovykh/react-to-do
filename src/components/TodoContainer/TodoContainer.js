@@ -2,72 +2,19 @@ import React, {
     useEffect, 
     useState, 
     useCallback,
-    useMemo
 } from "react";
 import { RotatingLines } from 'react-loader-spinner'
 import PropTypes from  "prop-types";
 import AddTodoForm from "../AddTodoForm/AddTodoForm";
-import TodoList from "../TodoList/TodoList"
-import Sorting from "../Sorting/Sorting";
 import style from "./TodoContainer.module.css";
+import SortingTodoList from "./SortingTodoList";
 
 const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
     const [todoList, setTodoList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [sortType, setSortType] = useState("default");
-
-    const sortedData = useMemo(() => {
-        let sortedList = todoList;
-
-        const ascendingAlphabet = () => {
-            sortedList = [...sortedList].sort((a, b) => { 
-                let loweredA = a.title.toLowerCase();
-                let loweredB = b.title.toLowerCase();
-                return (loweredA < loweredB ? -1 : loweredB > loweredA ? 1 : 0); 
-            });
-        };
-    
-        const descendingAlphabet = () => {
-            sortedList = [...sortedList].sort((a, b) => { 
-                let loweredA = a.title.toLowerCase();
-                let loweredB = b.title.toLowerCase();
-                return (loweredA > loweredB ? -1 : loweredB < loweredA ? 1 : 0); 
-            });
-        }
-        
-        const ascendingDate = () => {
-            sortedList =  [...sortedList].sort((a, b) => { 
-                return (new Date(a.date) < new Date(b.date) ? -1 : new Date(b.date) > new Date(a.date) ? 1 : 0); 
-            });
-        };
-    
-        const descendingDate = () => {
-            sortedList =  [...sortedList].sort((a, b) => { 
-                return (new Date(a.date) > new Date(b.date) ? -1 : new Date(b.date) < new Date(a.date)? 1 : 0); 
-            });
-        }
-    
-        switch (sortType) {
-            case "descendingAlphabet":
-                descendingAlphabet()
-                break;  
-            case "ascendingAlphabet":
-                ascendingAlphabet()
-                break;
-            case "descendingDate":
-                descendingDate()
-                break;
-            case "ascendingDate":
-                ascendingDate()
-                break;
-            default: 
-                ascendingDate()
-        }   
-        return sortedList;
-    }, [todoList, sortType]);
 
     const fetchData = useCallback(async() => {
-        const url = `https://api.airtable.com/v0/${tableBaseId}/${tableName}/?view=Grid%20view`;
+        const url = `https://api.airtable.com/v0/${tableBaseId}/${tableName}`;
 
         const options = {
             method: "GET",
@@ -141,7 +88,7 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
                 id: todo.id, 
                 title: todo.fields.title,
                 date: todo.createdTime,
-                isChecked: todo.fields.isChecked,
+                isChecked: Boolean(todo.fields.isChecked),
             };
 
             setTodoList([...todoList, newTodo]);
@@ -270,31 +217,14 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
                             visible={true}
                         />
                     </div>
-                ):(<div className={style.todolistWrapper}> 
-                        <div className={style.sortingButtons}> 
-                            <Sorting 
-                                setSortType={setSortType} 
-                                ascending={"ascendingAlphabet"} 
-                                descending={"descendingAlphabet"} 
-                                ascendingText={"A => Z"} 
-                                descendingText={"Z => A"}
-                            />
-                            <Sorting 
-                                setSortType={setSortType} 
-                                ascending={"ascendingDate"} 
-                                descending={"descendingDate"} 
-                                ascendingText={"old => new"} 
-                                descendingText={"new => old"}
-                            />
-                        </div>
-                        <TodoList 
-                            setTodoList={setTodoList}
-                            todoList={sortedData} 
-                            onRemoveItem={removeTodo} 
-                            updateData={updateData}
-                            handleCheck={handleCheck}
-                        />
-                    </div>
+                ):(
+                    <SortingTodoList 
+                        setTodoList={setTodoList}
+                        todoList={todoList} 
+                        onRemoveItem={removeTodo} 
+                        updateData={updateData}
+                        handleCheck={handleCheck}
+                    />
                 )
             }
         </>

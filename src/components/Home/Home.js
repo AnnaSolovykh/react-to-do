@@ -6,9 +6,20 @@ const Home = () => {
     const [quote, setQuote] = useState("");
 
     const getQuotes =  useCallback(async() => {
-        const apiUrl = "https://type.fit/api/quotes";
+        let category = 'inspirational'
+        const apiUrl = "https://api.api-ninjas.com/v1/quotes?category=" + category;
+        const quotesApiKey = process.env.REACT_APP_QUOTES_API_KEY;
+
+        const options = {
+            method: "GET",
+                headers: {
+                "Content-Type": "application/json",
+                'X-Api-Key': `${quotesApiKey}`,
+                },
+        };
+        
         try {
-            const response = await fetch(apiUrl);
+            const response = await fetch(apiUrl, options);
             if (!response.ok) {
                 const message = `Error: ${response.status}`;
                 throw new Error(message);
@@ -45,7 +56,7 @@ const Home = () => {
             </div>
             <Clock/>
             <div className={style.quoteWrapper}>
-                <p className={style.text}>{quote.text}</p>
+                <p className={style.text}>{quote.quote}</p>
                 <p className={style.author}>{quote.author}</p>     
             </div>
         </div>

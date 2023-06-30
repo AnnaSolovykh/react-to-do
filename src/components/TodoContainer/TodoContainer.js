@@ -88,10 +88,10 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
 
             const todos = data.records.map((todo) => {
                 const newTodo = {
-                id: todo.id,
-                title: todo.fields.title,
-                date: todo.createdTime,
-                isChecked: todo.fields.isChecked,
+                    id: todo.id,
+                    title: todo.fields.title,
+                    date: todo.createdTime,
+                    isChecked: Boolean(todo.fields.isChecked),
                 }
             return newTodo
             });
@@ -241,7 +241,7 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
                 if (todo.id === id) {
                     let checkedItem = {
                         ...todo, 
-                        isChecked: !todo.isChecked
+                        isChecked: Boolean(!todo.isChecked),
                     };
                     return checkedItem;
                 } else {

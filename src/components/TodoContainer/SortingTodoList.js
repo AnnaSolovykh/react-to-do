@@ -1,9 +1,10 @@
 import React, { useState, useMemo } from "react";
+import PropTypes from  "prop-types";
 import TodoList from "../TodoList/TodoList"
 import Sorting from "../Sorting/Sorting";
 import style from "./TodoContainer.module.css";
 
-const SortingTodoList = ({ setTodoList, todoList, onRemoveItem, updateData, handleCheck }) => {
+const SortingTodoList = ({ todoList, onRemoveItem, updateData, handleCheck }) => {
     const [sortType, setSortType] = useState("default"); 
 
     const sortedData = useMemo(() => {
@@ -75,7 +76,6 @@ const SortingTodoList = ({ setTodoList, todoList, onRemoveItem, updateData, hand
                 />
             </div>
             <TodoList 
-                setTodoList={setTodoList}
                 todoList={sortedData} 
                 onRemoveItem={onRemoveItem}
                 updateData={updateData}
@@ -85,3 +85,10 @@ const SortingTodoList = ({ setTodoList, todoList, onRemoveItem, updateData, hand
     )
 }
 export default SortingTodoList;
+
+SortingTodoList.propTypes = {
+    todoList: PropTypes.array, 
+    onRemoveItem: PropTypes.func,
+    updateDate: PropTypes.func,
+    handleCheck: PropTypes.func,
+}

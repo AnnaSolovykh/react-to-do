@@ -73,7 +73,7 @@ const TodoList = ({ todoList, onRemoveItem, updateData, handleCheck }) => {
 export default TodoList;
 
 TodoList.propTypes = {
-    setTodoList: PropTypes.func,
+    handleCheck: PropTypes.func,
     todoList: PropTypes.array, 
     onRemoveItem: PropTypes.func,
     updateDate: PropTypes.func,

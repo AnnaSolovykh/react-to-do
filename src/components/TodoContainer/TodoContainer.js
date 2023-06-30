@@ -219,7 +219,6 @@ const TodoContainer = ({ tableName, tableKey, tableBaseId }) => {
                     </div>
                 ):(
                     <SortingTodoList 
-                        setTodoList={setTodoList}
                         todoList={todoList} 
                         onRemoveItem={removeTodo} 
                         updateData={updateData}

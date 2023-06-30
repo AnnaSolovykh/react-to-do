@@ -17,7 +17,6 @@ const Home = () => {
                 'X-Api-Key': `${quotesApiKey}`,
                 },
         };
-        
         try {
             const response = await fetch(apiUrl, options);
             if (!response.ok) {

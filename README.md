@@ -2,6 +2,7 @@
 ## Final Project for CTD React Class
 
 Demo: https://todolist-annasolo.vercel.app
+<br/>
 Copy: https://annasolo-to-do-app.web.app 
 
 ### The home page

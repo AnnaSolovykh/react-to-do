@@ -17,9 +17,7 @@
     "react-scripts": "5.0.1",
     "sweetalert2": "^11.7.12"
   },
-  "homepage": "https://AnnaSolovykh.github.io/react-to-do",
   "scripts": {
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

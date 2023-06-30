@@ -1,4 +1,8 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, 
+    useEffect, 
+   // useRef, 
+    useCallback 
+} from "react";
 import Clock from "../Clock/Clock";
 import style from "./Home.module.css";
 
@@ -33,8 +37,8 @@ const Home = () => {
             }
     }, []);
 
-    const isFirstRender = useRef(true);
-
+   // const isFirstRender = useRef(true);
+/*
     useEffect(()=> {
         if (isFirstRender.current) {
             getQuotes();
@@ -44,6 +48,16 @@ const Home = () => {
             return () => clearInterval(interval);
         }
     }, [getQuotes]);
+*/
+
+useEffect(()=> {
+        getQuotes();
+}, []);
+
+useEffect(()=> {
+        const interval = setInterval(getQuotes, 7000);
+        return () => clearInterval(interval);
+}, [getQuotes]);
 
     return (
         <div className={style.wrapper}>       

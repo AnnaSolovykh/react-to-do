@@ -8,6 +8,7 @@
     "cors": "^2.8.5",
     "firebase": "^9.23.0",
     "font-awesome": "^4.7.0",
+    "gh-pages": "^5.0.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -16,7 +17,9 @@
     "react-scripts": "5.0.1",
     "sweetalert2": "^11.7.12"
   },
+  "homepage": "https://AnnaSolovykh.github.io/react-to-do",
   "scripts": {
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

@@ -1,15 +1,11 @@
-import { useState, 
-    useEffect, 
-   // useRef, 
-    useCallback 
-} from "react";
+import { useState, useEffect } from "react";
 import Clock from "../Clock/Clock";
 import style from "./Home.module.css";
 
 const Home = () => {
     const [quote, setQuote] = useState("");
 
-    const getQuotes =  useCallback(async() => {
+    const getQuotes = async() => {
         let category = 'inspirational'
         const apiUrl = "https://api.api-ninjas.com/v1/quotes?category=" + category;
         const quotesApiKey = process.env.REACT_APP_QUOTES_API_KEY;
@@ -35,29 +31,16 @@ const Home = () => {
         } catch (error) {
             console.log(error.message);
             }
+    }
+
+    useEffect(()=> {
+        getQuotes();
     }, []);
 
-   // const isFirstRender = useRef(true);
-/*
     useEffect(()=> {
-        if (isFirstRender.current) {
-            getQuotes();
-            isFirstRender.current = false;
-        } else if (!isFirstRender.current) {
-            const interval = setInterval(getQuotes, 7000);
-            return () => clearInterval(interval);
-        }
-    }, [getQuotes]);
-*/
-
-useEffect(()=> {
-        getQuotes();
-}, []);
-
-useEffect(()=> {
         const interval = setInterval(getQuotes, 7000);
         return () => clearInterval(interval);
-}, [getQuotes]);
+    }, []);
 
     return (
         <div className={style.wrapper}>       

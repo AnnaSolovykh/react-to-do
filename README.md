@@ -3,7 +3,6 @@
 
 Demo: https://todolist-annasolo.vercel.app
 <br/>
-Copy: https://annasolo-to-do-app.web.app 
 
 ### The home page
 The home page features the digital clock and inspiring quotes being fetched from API every 7 seconds.

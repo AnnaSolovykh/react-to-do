@@ -7,13 +7,13 @@ import style from "./TodoListItem.module.css";
 const ItemEditForm = ( {todo, newTitle, setNewTitle, updateData, setEditing } ) => {
     
     const editItem = (event) => {
-        const editedTitle = event.target.value;
+        const editedTitle = event.target.value.trimStart();
         setNewTitle(editedTitle);
     };
 
     const handleEditItem = (event) => {
         event.preventDefault();
-        if (newTitle=== "" || newTitle === " ") {
+        if (!newTitle) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',

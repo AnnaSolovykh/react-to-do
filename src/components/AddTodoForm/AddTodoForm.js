@@ -8,13 +8,13 @@ const AddTodoForm = ({onAddTodo}) => {
     const [todoTitle, setTodoTitle] = useState("");
 
     const handleTitleChange = (event) => {
-        const newTodoTitle = event.target.value;
+        const newTodoTitle = event.target.value.trimStart();
         setTodoTitle(newTodoTitle);
     }
 
     const handleAddTodo = (event) => {
         event.preventDefault();
-        if (todoTitle=== "" || todoTitle === " ") {
+        if (!todoTitle) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Oops...',

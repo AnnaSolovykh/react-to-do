@@ -8,7 +8,7 @@ const AddTodoForm = ({onAddTodo}) => {
     const [todoTitle, setTodoTitle] = useState("");
 
     const handleTitleChange = (event) => {
-        const newTodoTitle = event.target.value.trimStart() 
+        const newTodoTitle = event.target.value.trimStart();
         setTodoTitle(newTodoTitle);
     }
 

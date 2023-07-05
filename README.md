@@ -9,7 +9,7 @@ The home page features the digital clock and inspiring quotes being fetched from
 
 <img width="1000" alt="Screen Shot 2023-06-29 at 22 57 29" src="https://github.com/AnnaSolovykh/react-to-do/assets/114008959/09b03a35-3564-4801-9f8a-ff246ed0eceb">
 
-On the left there is a navbar with links to other pages desinged for setting goals. 
+On the left there is a navbar with links to other pages designed for setting goals. 
 The navlink of the chosen section changes color.
 In the upper left corner there is an icon designed for changing the color theme letting users choose between "Fresh Summer" and "Northern Lights". 
 
